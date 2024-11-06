@@ -1,12 +1,28 @@
 package com.application_web_gestion.classe;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Cours {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
     private String nom;
+
+    @ManyToOne  // Relation Many-to-One
+    @JoinColumn(name = "enseignant_id")  // La colonne dans la table Cours pour la clé étrangère
     private Enseignant enseignant;
+
+    @ManyToMany  // Relation Many-to-Many
+    @JoinTable(
+            name = "inscription", // Nom de la table de jonction
+            joinColumns = @JoinColumn(name = "cours_id"), // Clé étrangère vers la table Cours
+            inverseJoinColumns = @JoinColumn(name = "etudiant_id") // Clé étrangère vers la table Etudiant
+    )
     private List<Etudiant> etudiants;
 
     // Constructeur sans paramètres
@@ -22,6 +38,14 @@ public class Cours {
     }
 
     // Getters et Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNom() {
         return nom;
     }
@@ -60,7 +84,8 @@ public class Cours {
     @Override
     public String toString() {
         return "Cours{" +
-                "nom='" + nom + '\'' +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
                 ", enseignant=" + enseignant +
                 ", etudiants=" + etudiants +
                 '}';

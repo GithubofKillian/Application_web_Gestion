@@ -1,11 +1,21 @@
 package com.application_web_gestion.classe;
 
 import java.time.LocalDate;
+import javax.persistence.*;
 
+@Entity
 public class Inscription {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Génère un ID unique auto-incrémenté
+    private Long id;
+
+    @ManyToOne(optional = false) // Une inscription concerne un étudiant (obligatoire)
     private Etudiant etudiant;
+
+    @ManyToOne(optional = false) // Une inscription concerne un cours (obligatoire)
     private Cours cours;
+
     private LocalDate dateInscription;
 
     // Constructeur sans paramètres
@@ -19,6 +29,14 @@ public class Inscription {
     }
 
     // Getters et Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public Etudiant getEtudiant() {
         return etudiant;
     }
@@ -47,7 +65,8 @@ public class Inscription {
     @Override
     public String toString() {
         return "Inscription{" +
-                "etudiant=" + etudiant.getNom() + " " + etudiant.getPrenom() +
+                "id=" + id +
+                ", etudiant=" + etudiant.getNom() + " " + etudiant.getPrenom() +
                 ", cours=" + cours.getNom() +
                 ", dateInscription=" + dateInscription +
                 '}';

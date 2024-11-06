@@ -18,5 +18,9 @@
 
         <!-- Gérer la création des tables (peut être mis à 'update', 'create', 'create-drop', ou 'validate') -->
         <property name="hibernate.hbm2ddl.auto">update</property>
+
+        <!-- Contexte de session -->
+        <property name="hibernate.current_session_context_class">thread</property>
+
     </session-factory>
 </hibernate-configuration>

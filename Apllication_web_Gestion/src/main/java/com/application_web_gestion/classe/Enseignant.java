@@ -1,12 +1,24 @@
 package com.application_web_gestion.classe;
 
 import java.time.LocalDate;
+import javax.persistence.*;
 
+@Entity
 public class Enseignant {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // Génère un ID unique auto-incrémenté
+    private Long id;
+
+    @Column(name = "nom", nullable = false) // Champ obligatoire
     private String nom;
+
+    @Column(name = "prenom", nullable = false) // Champ obligatoire
     private String prenom;
+
     private LocalDate dateNaissance;
+
+    @Column(name = "contact")
     private String contact;
 
     // Constructeur sans paramètres
@@ -21,6 +33,14 @@ public class Enseignant {
     }
 
     // Getters et Setters
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNom() {
         return nom;
     }
@@ -57,7 +77,8 @@ public class Enseignant {
     @Override
     public String toString() {
         return "Enseignant{" +
-                "nom='" + nom + '\'' +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", dateNaissance=" + dateNaissance +
                 ", contact='" + contact + '\'' +

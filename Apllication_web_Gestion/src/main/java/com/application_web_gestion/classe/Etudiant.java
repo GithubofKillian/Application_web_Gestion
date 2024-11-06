@@ -1,16 +1,29 @@
 package com.application_web_gestion.classe;
 
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 public class Etudiant {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     private String nom;
     private String prenom;
     private LocalDate dateNaissance;
     private String contact;
 
+    @ManyToMany(mappedBy = "etudiants") // Référence à l’attribut `etudiants` dans `Cours`
+    private List<Cours> coursList;
+
     // Constructeur sans paramètres
-    public Etudiant() {}
+    public Etudiant() {
+        this.coursList = new ArrayList<>();
+    }
 
     // Constructeur avec paramètres
     public Etudiant(String nom, String prenom, LocalDate dateNaissance, String contact) {
@@ -18,9 +31,18 @@ public class Etudiant {
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
         this.contact = contact;
+        this.coursList = new ArrayList<>();
     }
 
-    // Getters et Setters
+    // Getters et Setters pour les attributs
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getNom() {
         return nom;
     }
@@ -53,11 +75,20 @@ public class Etudiant {
         this.contact = contact;
     }
 
+    public List<Cours> getCoursList() {
+        return coursList;
+    }
+
+    public void setCoursList(List<Cours> coursList) {
+        this.coursList = coursList;
+    }
+
     // Méthode toString pour afficher les informations de l'étudiant
     @Override
     public String toString() {
         return "Etudiant{" +
-                "nom='" + nom + '\'' +
+                "id=" + id +
+                ", nom='" + nom + '\'' +
                 ", prenom='" + prenom + '\'' +
                 ", dateNaissance=" + dateNaissance +
                 ", contact='" + contact + '\'' +
