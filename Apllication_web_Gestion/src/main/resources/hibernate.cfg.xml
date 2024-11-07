@@ -22,5 +22,11 @@
         <!-- Contexte de session -->
         <property name="hibernate.current_session_context_class">thread</property>
 
+        <!-- Mapping des entités -->
+        <mapping class="com.application_web_gestion.classe.Etudiant"/>
+        <mapping class="com.application_web_gestion.classe.Cours"/>
+        <mapping class="com.application_web_gestion.classe.Enseignant"/>
+        <mapping class="com.application_web_gestion.classe.Inscription"/>
+        <mapping class="com.application_web_gestion.classe.Resultat"/>
     </session-factory>
 </hibernate-configuration>
