@@ -31,7 +31,7 @@ public class EtudiantService {
         session.close();
     }
 
-    public void supprimerEtudiant(int id) {
+    public void supprimerEtudiant(Long id) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         Etudiant etudiant = session.get(Etudiant.class, id);
@@ -42,7 +42,7 @@ public class EtudiantService {
         session.close();
     }
 
-    public Etudiant getEtudiant(int id) {
+    public Etudiant getEtudiant(Long id) {
         Session session = sessionFactory.openSession();
         Etudiant etudiant = session.get(Etudiant.class, id);
         session.close();

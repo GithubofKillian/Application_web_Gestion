@@ -38,17 +38,18 @@
             <td>${etudiant.dateNaissance}</td>
             <td>${etudiant.contact}</td>
             <td>
-                <a href="etudiants?action=detail&id=${etudiant.id}">Voir</a>
-                <a href="etudiants?action=edit&id=${etudiant.id}">Modifier</a>
-                <a href="etudiants?action=delete&id=${etudiant.id}">Supprimer</a>
+                <a href="etudiantservlet?action=detail&id=${etudiant.id}">Voir</a>
+                <a href="etudiantservlet?action=edit&id=${etudiant.id}">Modifier</a>
+                <a href="etudiantservlet?action=delete&id=${etudiant.id}">Supprimer</a>
             </td>
         </tr>
     </c:forEach>
     </tbody>
 </table>
 <br>
+
 <!-- Lien pour ajouter un nouvel étudiant -->
-<a href="etudiants?action=add">Ajouter un etudiant</a>
+<a href="etudiantservlet?action=add">Ajouter un etudiant</a>
 
 </body>
 </html>
