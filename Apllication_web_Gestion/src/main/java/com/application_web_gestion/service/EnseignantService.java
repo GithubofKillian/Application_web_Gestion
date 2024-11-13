@@ -22,7 +22,6 @@ public class EnseignantService {
         transaction.commit();
         session.close();
     }
-
     public void modifierEnseignant(Enseignant enseignant) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
@@ -31,7 +30,7 @@ public class EnseignantService {
         session.close();
     }
 
-    public void supprimerEnseignant(int id) {
+    public void supprimerEnseignant(long id) {
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         Enseignant enseignant = session.get(Enseignant.class, id);
@@ -42,7 +41,7 @@ public class EnseignantService {
         session.close();
     }
 
-    public Enseignant getEnseignant(int id) {
+    public Enseignant getEnseignant(long id) {
         Session session = sessionFactory.openSession();
         Enseignant enseignant = session.get(Enseignant.class, id);
         session.close();

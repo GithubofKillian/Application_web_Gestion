@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Application_web_Gestion.iml" filepath="$PROJECT_DIR$/.idea/Application_web_Gestion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Apllication_web_Gestion/Application_web_Gestion.iml" filepath="$PROJECT_DIR$/Apllication_web_Gestion/Application_web_Gestion.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/ING2.iml" filepath="$PROJECT_DIR$/.idea/ING2.iml" />
     </modules>
   </component>
 </project>

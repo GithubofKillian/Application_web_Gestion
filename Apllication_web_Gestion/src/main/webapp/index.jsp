@@ -10,7 +10,7 @@
 <br/>
 <a href="etudiantservlet">Etudiant</a>
 <br/>
-<a href="">Enseigant</a>
+<a href="enseignantservlet">Enseigant</a>
 <br/>
 <a href="">Cours</a>
 <br/>
