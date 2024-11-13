@@ -6,13 +6,15 @@ import javax.persistence.*;
 public class Resultat {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Génère un ID unique auto-incrémenté
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne(optional = false) // Un résultat est lié à un étudiant (obligatoire)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "etudiant_id")
     private Etudiant etudiant;
 
-    @ManyToOne(optional = false) // Un résultat est lié à un cours (obligatoire)
+    @ManyToOne(optional = false)
+    @JoinColumn(name = "cours_id")
     private Cours cours;
 
     private double note;

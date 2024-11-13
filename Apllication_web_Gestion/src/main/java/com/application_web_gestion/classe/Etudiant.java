@@ -18,8 +18,11 @@ public class Etudiant {
     private LocalDate dateNaissance;
     private String contact;
 
-    @ManyToMany(mappedBy = "etudiants") // Référence à l’attribut `etudiants` dans `Cours`
+    @ManyToMany(mappedBy = "etudiants", cascade = CascadeType.ALL) // Cascade pour supprimer les inscriptions liées
     private List<Cours> coursList;
+
+    @OneToMany(mappedBy = "etudiant", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Resultat> resultats = new ArrayList<>();
 
     // Constructeur sans paramètres
     public Etudiant() {

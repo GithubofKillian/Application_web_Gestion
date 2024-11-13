@@ -17,13 +17,14 @@ public class Cours {
     @JoinColumn(name = "enseignant_id")  // La colonne dans la table Cours pour la clé étrangère
     private Enseignant enseignant;
 
-    @ManyToMany  // Relation Many-to-Many
+    @ManyToMany(cascade = CascadeType.ALL) // Relation Many-to-Many
     @JoinTable(
             name = "inscription", // Nom de la table de jonction
             joinColumns = @JoinColumn(name = "cours_id"), // Clé étrangère vers la table Cours
             inverseJoinColumns = @JoinColumn(name = "etudiant_id") // Clé étrangère vers la table Etudiant
     )
     private List<Etudiant> etudiants;
+
 
     // Constructeur sans paramètres
     public Cours() {

@@ -21,28 +21,30 @@ public class EtudiantServlet extends HttpServlet {
         etudiantService = new EtudiantService(); // Initialisation du service pour accéder aux données
     }
 
-    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
         if (action == null) {
-            afficherListeEtudiants(request, response); // Si aucune paramètre (action), on affiche la liste des étudiants
+            afficherListeEtudiants(request, response);
         } else {
             switch (action) {
-                case "add": // Envoie vers le formulaire de création  d'un étudiant
-                    request.getRequestDispatcher("/WEB-INF/views/ajouterEtudiant.jsp").forward(request, response);
-                    break;
-                case "detail": // Affichage des détails d'un étudiant (Pas fait)
+                case "detail":
                     afficherDetailEtudiant(request, response);
                     break;
-                case "edit": // Affichage du formulaire de modification
+                case "edit":
                     afficherFormulaireModification(request, response);
                     break;
-                case "delete": // Suppression d'un étudiant
+                case "delete":
                     supprimerEtudiant(request, response);
                     break;
+                case "search": // Nouvelle action pour la recherche
+                    rechercherEtudiantsParNom(request, response);
+                    break;
+                case "add":
+                    request.getRequestDispatcher("/WEB-INF/views/ajouterEtudiant.jsp").forward(request, response);
+                    break;
                 default:
-                    afficherListeEtudiants(request, response); // Si action inconnu, afficher la liste
+                    afficherListeEtudiants(request, response);
                     break;
             }
         }
@@ -59,18 +61,25 @@ public class EtudiantServlet extends HttpServlet {
         }
     }
 
+    private void rechercherEtudiantsParNom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String nomRecherche = request.getParameter("nomRecherche"); // Récupère le critère de recherche depuis le formulaire
+        List<Etudiant> etudiants = etudiantService.rechercherEtudiantsParNom(nomRecherche); // Appelle le service de recherche
+        request.setAttribute("etudiants", etudiants); // Met en attribut les résultats
+        request.getRequestDispatcher("/WEB-INF/views/listeEtudiants.jsp").forward(request, response); // Redirige vers la même page JSP
+    }
+
+    private void afficherDetailEtudiant(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        Long id = Long.parseLong(request.getParameter("id")); // Récupère l'ID de l'étudiant
+        Etudiant etudiant = etudiantService.getEtudiant(id); // Récupère l'étudiant à partir de l'ID
+        request.setAttribute("etudiant", etudiant); // Passe les détails de l'étudiant à la JSP
+        request.getRequestDispatcher("/WEB-INF/views/detailEtudiant.jsp").forward(request, response); // Affiche les détails
+    }
+
     /// Méthode de base, recoit toute les données avec EtudiantService et les envoie au jsp
     private void afficherListeEtudiants(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Etudiant> etudiants = etudiantService.getAllEtudiants(); // Récupérer tous les étudiants
         request.setAttribute("etudiants", etudiants); // Mettre la liste des étudiants en attribut
         request.getRequestDispatcher("/WEB-INF/views/listeEtudiants.jsp").forward(request, response); // Rediriger vers la JSP
-    }
-
-    private void afficherDetailEtudiant(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        Etudiant etudiant = etudiantService.getEtudiant(id); // Récupérer l'étudiant par son ID
-        request.setAttribute("etudiant", etudiant); // Mettre l'étudiant en attribut
-        request.getRequestDispatcher("/WEB-INF/views/detailEtudiant.jsp").forward(request, response); // Afficher les détails
     }
 
     /// Envoie vers le form de modification avec les données de l'étudiant

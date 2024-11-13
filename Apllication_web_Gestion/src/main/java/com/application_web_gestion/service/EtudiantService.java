@@ -1,6 +1,7 @@
 package com.application_web_gestion.service;
 
 import com.application_web_gestion.classe.Etudiant;
+import org.hibernate.Cache;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
@@ -55,4 +56,15 @@ public class EtudiantService {
         session.close();
         return etudiants;
     }
+
+    public List<Etudiant> rechercherEtudiantsParNom(String nomRecherche) {
+        Session session = sessionFactory.openSession();
+        List<Etudiant> etudiants = session.createQuery("FROM Etudiant WHERE nom LIKE :nom", Etudiant.class)
+                .setParameter("nom", "%" + nomRecherche + "%")
+                .getResultList();
+        session.close();
+        return etudiants;
+    }
+
+
 }
