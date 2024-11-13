@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.Hibernate;
 
 import java.util.List;
 
@@ -31,7 +32,7 @@ public class CoursService {
         session.close();
     }
 
-    public void supprimerCours(int id) {
+    public void supprimerCours(Long id) {  // Change int to Long
         Session session = sessionFactory.openSession();
         Transaction transaction = session.beginTransaction();
         Cours cours = session.get(Cours.class, id);
@@ -42,9 +43,12 @@ public class CoursService {
         session.close();
     }
 
-    public Cours getCours(int id) {
+    public Cours getCours(Long id) {
         Session session = sessionFactory.openSession();
         Cours cours = session.get(Cours.class, id);
+        if (cours != null) {
+            Hibernate.initialize(cours.getEtudiants()); // Initialiser explicitement la collection
+        }
         session.close();
         return cours;
     }
