@@ -10,7 +10,7 @@
         <property name="hibernate.connection.password">cytech0001</property>
 
         <!-- Dialecte Hibernate pour MySQL -->
-        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</property>
 
         <!-- Affichage des requêtes SQL dans la console (optionnel) -->
         <property name="hibernate.show_sql">true</property>
