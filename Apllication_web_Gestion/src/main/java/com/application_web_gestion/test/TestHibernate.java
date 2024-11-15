@@ -35,7 +35,6 @@ public class TestHibernate {
             // 3. Créer un cours et assigner l'enseignant à ce cours
             Cours cours = new Cours("Mathématiques", enseignant);
 
-
             // 5. Créer un résultat
             Resultat resultat = new Resultat(etudiant, cours, 15.5);
 
