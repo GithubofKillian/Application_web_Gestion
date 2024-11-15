@@ -3,7 +3,6 @@ package com.application_web_gestion.test;
 import com.application_web_gestion.classe.Cours;
 import com.application_web_gestion.classe.Enseignant;
 import com.application_web_gestion.classe.Etudiant;
-import com.application_web_gestion.classe.Inscription;
 import com.application_web_gestion.classe.Resultat;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
@@ -20,7 +19,6 @@ public class TestHibernate {
                 .addAnnotatedClass(Etudiant.class) // Ajout des classes annotées
                 .addAnnotatedClass(Cours.class)
                 .addAnnotatedClass(Enseignant.class) // Ajoutez ici Enseignant
-                .addAnnotatedClass(Inscription.class)
                 .addAnnotatedClass(Resultat.class)
                 .buildSessionFactory();
 
@@ -37,8 +35,6 @@ public class TestHibernate {
             // 3. Créer un cours et assigner l'enseignant à ce cours
             Cours cours = new Cours("Mathématiques", enseignant);
 
-            // 4. Créer une inscription
-            Inscription inscription = new Inscription(etudiant, cours, LocalDate.now());
 
             // 5. Créer un résultat
             Resultat resultat = new Resultat(etudiant, cours, 15.5);
@@ -50,7 +46,6 @@ public class TestHibernate {
             session.save(enseignant);  // N'oubliez pas de sauvegarder l'enseignant !
             session.save(etudiant);
             session.save(cours);
-            session.save(inscription);
             session.save(resultat);
 
             // Commit la transaction

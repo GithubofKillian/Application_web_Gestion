@@ -14,8 +14,6 @@
 <br/>
 <a href="coursservlet">Cours</a>
 <br/>
-<a href="">Inscription</a>
-<br/>
 <a href="">Resultat</a>
 </body>
 </html>

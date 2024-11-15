@@ -21,32 +21,22 @@ public class EtudiantServlet extends HttpServlet {
         etudiantService = new EtudiantService(); // Initialisation du service pour accéder aux données
     }
 
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
         if (action == null) {
             afficherListeEtudiants(request, response);
-        } else {
-            switch (action) {
-                case "detail":
-                    afficherDetailEtudiant(request, response);
-                    break;
-                case "edit":
-                    afficherFormulaireModification(request, response);
-                    break;
-                case "delete":
-                    supprimerEtudiant(request, response);
-                    break;
-                case "search": // Nouvelle action pour la recherche
-                    rechercherEtudiantsParNom(request, response);
-                    break;
-                case "add":
-                    request.getRequestDispatcher("/WEB-INF/views/ajouterEtudiant.jsp").forward(request, response);
-                    break;
-                default:
-                    afficherListeEtudiants(request, response);
-                    break;
-            }
+            return;
+        }
+
+        switch (action) {
+            case "detail" -> afficherDetailEtudiant(request, response);
+            case "edit" -> afficherFormulaireModification(request, response);
+            case "delete" -> supprimerEtudiant(request, response);
+            case "search" -> rechercherEtudiantsParNom(request, response);
+            case "add" -> request.getRequestDispatcher("/WEB-INF/views/ajouterEtudiant.jsp").forward(request, response);
+            default -> afficherListeEtudiants(request, response);
         }
     }
 
@@ -62,68 +52,69 @@ public class EtudiantServlet extends HttpServlet {
     }
 
     private void rechercherEtudiantsParNom(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String nomRecherche = request.getParameter("nomRecherche"); // Récupère le critère de recherche depuis le formulaire
-        List<Etudiant> etudiants = etudiantService.rechercherEtudiantsParNom(nomRecherche); // Appelle le service de recherche
-        request.setAttribute("etudiants", etudiants); // Met en attribut les résultats
-        request.getRequestDispatcher("/WEB-INF/views/listeEtudiants.jsp").forward(request, response); // Redirige vers la même page JSP
+        String nomRecherche = request.getParameter("nomRecherche");
+        List<Etudiant> etudiants = etudiantService.rechercherEtudiantsParNom(nomRecherche.trim());
+        request.setAttribute("etudiants", etudiants);
+        request.getRequestDispatcher("/WEB-INF/views/listeEtudiants.jsp").forward(request, response);
     }
 
     private void afficherDetailEtudiant(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long id = Long.parseLong(request.getParameter("id")); // Récupère l'ID de l'étudiant
-        Etudiant etudiant = etudiantService.getEtudiant(id); // Récupère l'étudiant à partir de l'ID
-        request.setAttribute("etudiant", etudiant); // Passe les détails de l'étudiant à la JSP
-        request.getRequestDispatcher("/WEB-INF/views/detailEtudiant.jsp").forward(request, response); // Affiche les détails
+        Long id = parseLongParameter(request.getParameter("id"));
+        Etudiant etudiant = etudiantService.getEtudiant(id);
+        request.setAttribute("etudiant", etudiant);
+        request.getRequestDispatcher("/WEB-INF/views/detailEtudiant.jsp").forward(request, response);
     }
 
-    /// Méthode de base, recoit toute les données avec EtudiantService et les envoie au jsp
     private void afficherListeEtudiants(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        List<Etudiant> etudiants = etudiantService.getAllEtudiants(); // Récupérer tous les étudiants
-        request.setAttribute("etudiants", etudiants); // Mettre la liste des étudiants en attribut
-        request.getRequestDispatcher("/WEB-INF/views/listeEtudiants.jsp").forward(request, response); // Rediriger vers la JSP
+        List<Etudiant> etudiants = etudiantService.getAllEtudiants();
+        request.setAttribute("etudiants", etudiants);
+        request.getRequestDispatcher("/WEB-INF/views/listeEtudiants.jsp").forward(request, response);
     }
 
-    /// Envoie vers le form de modification avec les données de l'étudiant
     private void afficherFormulaireModification(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        Long id = Long.parseLong(request.getParameter("id"));
+        Long id = parseLongParameter(request.getParameter("id"));
         Etudiant etudiant = etudiantService.getEtudiant(id);
         request.setAttribute("etudiant", etudiant);
         request.getRequestDispatcher("/WEB-INF/views/modifierEtudiant.jsp").forward(request, response);
     }
 
-    /// Récupère le form de création créé l'étudiant et l'envoie dans la bdd avec EtudiantService
     private void ajouterEtudiant(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        LocalDate dateNaissance = LocalDate.parse(request.getParameter("dateNaissance"));
-        String contact = request.getParameter("contact");
-
-        Etudiant etudiant = new Etudiant(nom, prenom, dateNaissance, contact);
+        Etudiant etudiant = new Etudiant(
+                request.getParameter("nom"),
+                request.getParameter("prenom"),
+                LocalDate.parse(request.getParameter("dateNaissance")),
+                request.getParameter("contact")
+        );
         etudiantService.ajouterEtudiant(etudiant);
         response.sendRedirect("etudiantservlet");
     }
 
-    /// Récupère le form de modification de l'étudiant et l'envoie dans la bdd avec EtudiantService
     private void modifierEtudiant(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Long id = Long.parseLong(request.getParameter("id"));
-        String nom = request.getParameter("nom");
-        String prenom = request.getParameter("prenom");
-        LocalDate dateNaissance = LocalDate.parse(request.getParameter("dateNaissance"));
-        String contact = request.getParameter("contact");
-
+        Long id = parseLongParameter(request.getParameter("id"));
         Etudiant etudiant = etudiantService.getEtudiant(id);
-        etudiant.setNom(nom);
-        etudiant.setPrenom(prenom);
-        etudiant.setDateNaissance(dateNaissance);
-        etudiant.setContact(contact);
 
-        etudiantService.modifierEtudiant(etudiant);
+        if (etudiant != null) {
+            etudiant.setNom(request.getParameter("nom"));
+            etudiant.setPrenom(request.getParameter("prenom"));
+            etudiant.setDateNaissance(LocalDate.parse(request.getParameter("dateNaissance")));
+            etudiant.setContact(request.getParameter("contact"));
+
+            etudiantService.modifierEtudiant(etudiant);
+        }
         response.sendRedirect("etudiantservlet");
     }
 
-    /// Récupère l'id de l'étudiant et le supprime avec EtudiantService
     private void supprimerEtudiant(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        Long id = Long.parseLong(request.getParameter("id"));
+        Long id = parseLongParameter(request.getParameter("id"));
         etudiantService.supprimerEtudiant(id);
         response.sendRedirect("etudiantservlet");
+    }
+
+    private Long parseLongParameter(String parameter) {
+        try {
+            return Long.parseLong(parameter);
+        } catch (NumberFormatException e) {
+            return null; // Peut être adapté pour rediriger vers une page d'erreur.
+        }
     }
 }
