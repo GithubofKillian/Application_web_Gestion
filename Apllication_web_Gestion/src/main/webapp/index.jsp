@@ -15,5 +15,7 @@
 <a href="coursservlet">Cours</a>
 <br/>
 <a href="">Resultat</a>
+<br>
+<a href="AuthServlet">Authentification</a>
 </body>
 </html>
