@@ -13,6 +13,7 @@
 <p><strong>Prénom :</strong> ${enseignant.prenom}</p>
 <p><strong>Date de Naissance :</strong> ${enseignant.dateNaissance}</p>
 <p><strong>Contact :</strong> ${enseignant.contact}</p>
+<p><strong>Mot de passe :</strong> ${enseignant.mdp}</p>
 
 <a href="enseignantservlet">Retour à la liste des enseignants</a>
 </body>

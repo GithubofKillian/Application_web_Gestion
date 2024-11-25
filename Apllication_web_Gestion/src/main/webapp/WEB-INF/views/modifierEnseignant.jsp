@@ -21,7 +21,10 @@
   <input type="date" id="dateNaissance" name="dateNaissance" value="${enseignant.dateNaissance}" required><br>
 
   <label for="contact">Contact :</label>
-  <input type="text" id="contact" name="contact" value="${enseignant.contact}"><br>
+  <input type="text" id="contact" name="contact" value="${enseignant.contact}"required><br>
+
+  <label for="mdp">Mot de passe :</label>
+  <input type="text" id="mdp" name="mdp" value="${enseignant.mdp}"required><br>
 
   <input type="submit" value="Enregistrer les modifications">
 </form>

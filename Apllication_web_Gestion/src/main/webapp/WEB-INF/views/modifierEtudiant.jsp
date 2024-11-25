@@ -30,6 +30,9 @@
   <label for="contact">Contact :</label>
   <input type="text" id="contact" name="contact" value="${etudiant.contact}" required><br>
 
+  <label for="mdp">Mot de passe :</label>
+  <input type="text" id="mdp" name="mdp" value="${etudiant.mdp}"required><br>
+
   <button type="submit">Modifier</button>
 </form>
 

@@ -83,7 +83,7 @@ public class EtudiantServlet extends HttpServlet {
                 request.getParameter("nom"),
                 request.getParameter("prenom"),
                 LocalDate.parse(request.getParameter("dateNaissance")),
-                request.getParameter("contact")
+                request.getParameter("contact"), request.getParameter("mdp")
         );
         etudiantService.ajouterEtudiant(etudiant);
         response.sendRedirect("etudiantservlet");
@@ -96,8 +96,8 @@ public class EtudiantServlet extends HttpServlet {
         if (etudiant != null) {
             etudiant.setNom(request.getParameter("nom"));
             etudiant.setPrenom(request.getParameter("prenom"));
-            etudiant.setDateNaissance(LocalDate.parse(request.getParameter("dateNaissance")));
-            etudiant.setContact(request.getParameter("contact"));
+            etudiant.setContact(request.getParameter("contact").trim());
+            etudiant.setMdp(request.getParameter("mdp"));
 
             etudiantService.modifierEtudiant(etudiant);
         }

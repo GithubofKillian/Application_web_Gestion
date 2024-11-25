@@ -87,8 +87,9 @@ public class EnseignantServlet extends HttpServlet {
         String prenom = request.getParameter("prenom");
         LocalDate dateNaissance = LocalDate.parse(request.getParameter("dateNaissance"));
         String contact = request.getParameter("contact");
+        String mdp = request.getParameter("mdp");
 
-        Enseignant enseignant = new Enseignant(nom, prenom, dateNaissance, contact);
+        Enseignant enseignant = new Enseignant(nom, prenom, dateNaissance, contact, mdp);
         enseignantService.ajouterEnseignant(enseignant);
         response.sendRedirect("enseignantservlet");
     }
@@ -99,12 +100,14 @@ public class EnseignantServlet extends HttpServlet {
         String prenom = request.getParameter("prenom");
         LocalDate dateNaissance = LocalDate.parse(request.getParameter("dateNaissance"));
         String contact = request.getParameter("contact");
+        String mdp = request.getParameter("mdp");
 
         Enseignant enseignant = enseignantService.getEnseignant(id);
         enseignant.setNom(nom);
         enseignant.setPrenom(prenom);
         enseignant.setDateNaissance(dateNaissance);
         enseignant.setContact(contact);
+        enseignant.setMdp(mdp);
 
         enseignantService.modifierEnseignant(enseignant);
         response.sendRedirect("enseignantservlet");

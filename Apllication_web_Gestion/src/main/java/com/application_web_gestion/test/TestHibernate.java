@@ -1,9 +1,6 @@
 package com.application_web_gestion.test;
 
-import com.application_web_gestion.classe.Cours;
-import com.application_web_gestion.classe.Enseignant;
-import com.application_web_gestion.classe.Etudiant;
-import com.application_web_gestion.classe.Resultat;
+import com.application_web_gestion.classe.*;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -20,17 +17,19 @@ public class TestHibernate {
                 .addAnnotatedClass(Cours.class)
                 .addAnnotatedClass(Enseignant.class) // Ajoutez ici Enseignant
                 .addAnnotatedClass(Resultat.class)
+                .addAnnotatedClass(Admin.class)
                 .buildSessionFactory();
 
         // Création de la session Hibernate
         Session session = factory.getCurrentSession();
 
         try {
+            Admin admin = new Admin("Ratio","Boufon","tonpere@tamere.fr","JPP");
             // 1. Créer un nouvel enseignant
-            Enseignant enseignant = new Enseignant("Martin", "Pierre", LocalDate.of(1980, 3, 25), "pierre.martin@example.com");
+            Enseignant enseignant = new Enseignant("Martin", "Pierre", LocalDate.of(1980, 3, 25), "pierre.martin@example.com","abcd");
 
             // 2. Créer un nouvel étudiant
-            Etudiant etudiant = new Etudiant("Dupont", "Jean", LocalDate.of(1998, 5, 14), "jean.dupont@example.com");
+            Etudiant etudiant = new Etudiant("Dupont", "Jean", LocalDate.of(1998, 5, 14), "jean.dupont@example.com","abcd");
 
             // 3. Créer un cours et assigner l'enseignant à ce cours
             Cours cours = new Cours("Mathématiques", enseignant);
@@ -46,6 +45,7 @@ public class TestHibernate {
             session.save(etudiant);
             session.save(cours);
             session.save(resultat);
+            session.save(admin);
 
             // Commit la transaction
             session.getTransaction().commit();

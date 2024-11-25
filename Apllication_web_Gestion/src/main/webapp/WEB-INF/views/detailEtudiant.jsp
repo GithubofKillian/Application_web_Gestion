@@ -19,6 +19,7 @@
 <p><strong>Prénom :</strong> ${etudiant.prenom}</p>
 <p><strong>Date de naissance :</strong> ${etudiant.dateNaissance}</p>
 <p><strong>Contact :</strong> ${etudiant.contact}</p>
+<p><strong>Mot de passe :</strong> ${etudiant.mdp}</p>
 
 <a href="etudiantservlet?action=edit&id=${etudiant.id}">
     <button type="button">Modifier</button>

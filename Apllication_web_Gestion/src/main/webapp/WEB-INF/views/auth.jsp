@@ -15,7 +15,6 @@
 <h1>Bienvenue</h1>
 <form action="AuthServlet" method="post">
   <button type="submit" name="action" value="login">Se connecter</button>
-  <button type="submit" name="action" value="signup">S'inscrire</button>
 </form>
 
 </body>

@@ -32,13 +32,17 @@ public class Etudiant implements Serializable {
     @OneToMany(mappedBy = "etudiant", cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Resultat> resultats = new ArrayList<>();
 
+    @Column(name = "mdp", nullable = false) // Champ obligatoire
+    private String mdp;
+
     public Etudiant() {}
 
-    public Etudiant(String nom, String prenom, LocalDate dateNaissance, String contact) {
+    public Etudiant(String nom, String prenom, LocalDate dateNaissance, String contact,String mdp) {
         this.nom = nom;
         this.prenom = prenom;
         this.dateNaissance = dateNaissance;
         this.contact = contact;
+        this.mdp = mdp;
     }
 
     public Long getId() {
@@ -87,10 +91,10 @@ public class Etudiant implements Serializable {
     }
 
     public void setContact(String contact) {
-        if (contact == null || !contact.matches("\\d{10}")) {
-            throw new IllegalArgumentException("Le contact doit être un numéro de téléphone valide.");
+        if (contact == null || !contact.trim().matches("^[\\w.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$")) {
+            throw new IllegalArgumentException("Le contact \"" + contact + "\" n'est pas une adresse e-mail valide.");
         }
-        this.contact = contact;
+        this.contact = contact.trim();
     }
 
     public List<Cours> getCoursList() {
@@ -109,6 +113,13 @@ public class Etudiant implements Serializable {
         this.resultats = resultats;
     }
 
+    public String getMdp() {
+        return mdp;
+    }
+
+    public void setMdp(String mdp) {
+        this.mdp = mdp;
+    }
     @Override
     public String toString() {
         String coursNoms = coursList.stream()

@@ -21,6 +21,9 @@
   <label for="contact">Contact :</label>
   <input type="text" id="contact" name="contact"><br>
 
+  <label for="mdp">Mot de passe :</label>
+  <input type="text" id="mdp" name="mdp"><br>
+
   <input type="submit" value="Ajouter Enseignant">
 </form>
 

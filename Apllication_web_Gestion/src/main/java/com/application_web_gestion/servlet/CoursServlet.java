@@ -60,12 +60,16 @@ public class CoursServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String action = request.getParameter("action");
 
-        if ("create".equals(action)) {
-            ajouterCours(request, response);
-        } else if ("update".equals(action)) {
-            modifierCours(request, response);
+        switch (action) {
+            case "create":
+                ajouterCours(request, response);
+                break;
+            case "update":
+                modifierCours(request, response);
+                break;
         }
     }
+
 
     private void afficherListeCours(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Cours> cours = coursService.getAllCours();
