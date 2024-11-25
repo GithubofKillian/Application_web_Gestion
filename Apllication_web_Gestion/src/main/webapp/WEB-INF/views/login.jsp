@@ -14,7 +14,7 @@
 <body>
 <h1>Connexion</h1>
 <form action="LoginServlet" method="post">
-    <label for="username">Nom d'utilisateur :</label>
+    <label for="username">Adresse mail :</label>
     <input type="text" id="username" name="username" required><br><br>
 
     <label for="password">Mot de passe :</label>
