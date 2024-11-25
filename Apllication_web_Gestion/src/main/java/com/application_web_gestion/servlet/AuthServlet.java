@@ -14,7 +14,6 @@ public class AuthServlet extends HttpServlet {
 
         switch (action) {
             case "login" -> request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
-            case "signup" -> request.getRequestDispatcher("/WEB-INF/views/signup.jsp").forward(request, response);
             default -> request.getRequestDispatcher("/WEB-INF/views/auth.jsp").forward(request, response);
         }
     }
