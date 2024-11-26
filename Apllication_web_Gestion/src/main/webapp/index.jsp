@@ -16,6 +16,6 @@
 <br/>
 <a href="resultatservlet">Resultat</a>
 <br>
-<a href="AuthServlet">Authentification</a>
+<a href="LoginServlet">Authentification</a>
 </body>
 </html>
