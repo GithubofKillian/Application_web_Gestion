@@ -1,9 +1,6 @@
 package com.application_web_gestion.servlet;
 
-import com.application_web_gestion.classe.HibernateUtil;
-import org.hibernate.Session;
-import org.hibernate.query.Query;
-
+import com.application_web_gestion.service.LoginService;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -15,6 +12,8 @@ import java.io.IOException;
 @WebServlet("/LoginServlet")
 public class LoginServlet extends HttpServlet {
 
+    private final LoginService loginService = new LoginService(); // Initialisation du service
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Par défaut, afficher la page de connexion
@@ -23,36 +22,24 @@ public class LoginServlet extends HttpServlet {
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String username = request.getParameter("username");
+        String contact = request.getParameter("contact");
         String password = request.getParameter("password");
         String role = request.getParameter("role");
 
-        System.out.println("Username: " + username);
+        System.out.println("Contact: " + contact);
         System.out.println("Password: " + password);
         System.out.println("Role: " + role);
 
-        // Vérification avec Hibernate
-        if (authenticateUser(username, password, role)) {
+        // Vérification avec LoginService
+        if (loginService.authenticateUser(contact, password, role)) {
+            System.out.println("La méthode authentificate renvoie true");
             // Redirection selon le rôle
             response.sendRedirect(request.getContextPath() + "/index.jsp");
         } else {
+            System.out.println("La méthode authentificate renvoie false");
             // Échec d'authentification : afficher un message d'erreur
             request.setAttribute("error", "Identifiants incorrects ou rôle invalide.");
             request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
-        }
-    }
-
-    private boolean authenticateUser(String username, String password, String role) {
-        try (Session session = HibernateUtil.getSessionFactory().openSession()) {
-            String hql = "FROM " + role + " WHERE contact = :username AND mdp = :password";
-            Query<?> query = session.createQuery(hql);
-            query.setParameter("username", username);
-            query.setParameter("password", password);
-
-            return !query.list().isEmpty(); // Retourne true si un utilisateur est trouvé
-        } catch (Exception e) {
-            e.printStackTrace();
-            return false;
         }
     }
 }

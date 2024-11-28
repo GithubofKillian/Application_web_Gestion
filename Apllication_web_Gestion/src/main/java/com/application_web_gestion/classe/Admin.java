@@ -2,18 +2,17 @@ package com.application_web_gestion.classe;
 
 import javax.persistence.*;
 
-
 @Entity
 public class Admin {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // Génère un ID unique auto-incrémenté
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nom", nullable = false) // Champ obligatoire
+    @Column(name = "nom", nullable = false)
     private String nom;
 
-    @Column(name = "prenom", nullable = false) // Champ obligatoire
+    @Column(name = "prenom", nullable = false)
     private String prenom;
 
     @Column(name = "contact")
@@ -22,12 +21,19 @@ public class Admin {
     @Column(name = "mdp", nullable = false)
     private String mdp;
 
+    // Constructeur sans argument
+    public Admin() {
+    }
+
+    // Constructeur avec arguments
     public Admin(String nom, String prenom, String contact, String mdp) {
         this.nom = nom;
         this.prenom = prenom;
         this.contact = contact;
         this.mdp = mdp;
     }
+
+    // Getters et setters
     public Long getId() {
         return id;
     }
@@ -68,7 +74,6 @@ public class Admin {
         this.mdp = mdp;
     }
 
-    // Méthode toString pour afficher les informations de l'admin
     @Override
     public String toString() {
         return "Admin{" +

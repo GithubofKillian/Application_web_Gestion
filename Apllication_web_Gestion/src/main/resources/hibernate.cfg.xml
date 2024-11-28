@@ -27,5 +27,6 @@
         <mapping class="com.application_web_gestion.classe.Cours"/>
         <mapping class="com.application_web_gestion.classe.Enseignant"/>
         <mapping class="com.application_web_gestion.classe.Resultat"/>
+        <mapping class="com.application_web_gestion.classe.Admin"/>
     </session-factory>
 </hibernate-configuration>

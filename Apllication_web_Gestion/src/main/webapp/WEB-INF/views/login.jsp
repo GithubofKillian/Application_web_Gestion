@@ -13,8 +13,8 @@
 <% } %>
 
 <form action="LoginServlet" method="post">
-    <label for="username">Adresse mail :</label>
-    <input type="text" id="username" name="username" required><br><br>
+    <label for="contact">Adresse mail :</label>
+    <input type="text" id="contact" name="contact" required><br><br>
 
     <label for="password">Mot de passe :</label>
     <input type="password" id="password" name="password" required><br><br>
