@@ -11,9 +11,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Modifier un étudiant</title>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifierEtudiant.css">
 </head>
 <body>
-<h2>Modifier l'étudiant</h2>
+<div class="container">
+<h1>Modifier l'étudiant</h1>
 
 <form action="etudiantservlet?action=update" method="post">
   <input type="hidden" name="id" value="${etudiant.id}">
@@ -37,6 +39,6 @@
 </form>
 
 <a href="etudiantservlet"><button type="button">Retour à la liste des etudiants</button></a>
-
+</div>
 </body>
 </html>

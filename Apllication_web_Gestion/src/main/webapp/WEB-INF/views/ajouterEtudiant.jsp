@@ -11,9 +11,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Ajouter un étudiant</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/ajouterEtudiant.css">
 </head>
 <body>
-<h2>Ajouter l'étudiant</h2>
+<div class="container">
+<h1>Ajouter l'étudiant</h1>
 
 <form action="etudiantservlet" method="post">
     <input type="hidden" name="action" value="create">
@@ -35,6 +37,7 @@
 
     <button type="submit">Ajouter</button>
 </form>
+</div>
 </body>
 </html>
 

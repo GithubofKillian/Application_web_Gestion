@@ -2,9 +2,14 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/login.css">
 </head>
 <body>
+<img src="${pageContext.request.contextPath}/resources/images/logo_cyu.png" alt="Logo" class="logo">
+<div class="container">
 <h1>Connexion</h1>
 
 <%-- Affichage du message d'erreur, s'il existe --%>
@@ -28,5 +33,6 @@
 
     <button type="submit">Se connecter</button>
 </form>
+</div>
 </body>
 </html>

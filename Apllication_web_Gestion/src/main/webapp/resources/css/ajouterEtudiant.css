@@ -1,0 +1,77 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f7f6; /* Fond léger pour un effet apaisant */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Centrage vertical de l'élément */
+}
+
+/* Conteneur principal qui va contenir tout le formulaire */
+.container {
+    background-color: #ffffff; /* Fond blanc pour le formulaire */
+    width: 100%;
+    max-width: 600px; /* Largeur maximale du formulaire */
+    padding: 30px;
+    border-radius: 8px; /* Bords arrondis pour un effet doux */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Ombre pour un effet flottant */
+    box-sizing: border-box;
+}
+
+/* Titre principal */
+h1 {
+    text-align: center;
+    color: #333; /* Couleur sombre pour le titre */
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Style des labels */
+label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #555; /* Couleur légèrement plus claire pour les labels */
+}
+
+/* Style des champs de saisie */
+input[type="text"], input[type="date"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px; /* Espacement entre les champs */
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 14px;
+    background-color: #f9f9f9; /* Fond clair pour les champs de saisie */
+}
+
+/* Bouton de soumission */
+button[type="submit"] {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    background-color: #4CAF50; /* Vert classique */
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+/* Changement de couleur au survol du bouton */
+button[type="submit"]:hover {
+    background-color: #45a049; /* Vert légèrement plus foncé */
+}
+
+/* Styles pour les champs vides ou avec erreurs (optionnel si vous ajoutez de la validation) */
+input:invalid {
+    border-color: #ff4d4d;
+}
+
+input:valid {
+    border-color: #4CAF50;
+}
