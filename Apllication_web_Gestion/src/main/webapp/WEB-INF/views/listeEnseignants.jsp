@@ -5,13 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Liste des Enseignants</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/listeEnseignants.css">
 </head>
 <body>
-<h2>Liste des Enseignants</h2>
+<h1>Liste des Enseignants</h1>
 
-<a href="enseignantservlet?action=add">Ajouter un nouvel enseignant</a>
-
-<table border="1">
+<table>
+    <thead>
     <tr>
         <th>ID</th>
         <th>Nom</th>
@@ -19,6 +19,8 @@
         <th>Contact</th>
         <th>Actions</th>
     </tr>
+    </thead>
+    <tbody>
     <c:forEach var="enseignant" items="${enseignants}">
         <tr>
             <td>${enseignant.id}</td>
@@ -26,14 +28,20 @@
             <td>${enseignant.prenom}</td>
             <td>${enseignant.contact}</td>
             <td>
-                <a href="enseignantservlet?action=detail&id=${enseignant.id}">Détails</a> |
-                <a href="enseignantservlet?action=edit&id=${enseignant.id}">Modifier</a> |
-                <a href="enseignantservlet?action=delete&id=${enseignant.id}">Supprimer</a> |
-                <a href="enseignantservlet?action=assignCourse&enseignantId=${enseignant.id}">Affecter Cours</a>
+                <a href="enseignantservlet?action=detail&id=${enseignant.id}" class="btn btn-view">Détails</a>
+                <a href="enseignantservlet?action=edit&id=${enseignant.id}" class="btn btn-edit">Modifier</a>
+                <a href="enseignantservlet?action=delete&id=${enseignant.id}" class="btn btn-delete">Supprimer</a>
+                <a href="enseignantservlet?action=assignCourse&enseignantId=${enseignant.id}" class="btn btn-link">Affecter Cours</a>
             </td>
         </tr>
     </c:forEach>
+    </tbody>
 </table>
+<br>
+
+<a href="enseignantservlet?action=add">
+    <button type="button" class="btn add-btn">Ajouter un enseignant</button>
+</a>
 
 </body>
 </html>

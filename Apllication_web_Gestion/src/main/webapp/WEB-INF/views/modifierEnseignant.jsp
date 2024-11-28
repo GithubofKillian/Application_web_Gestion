@@ -4,9 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Modifier Enseignant</title>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifierEnseignant.css">
 </head>
 <body>
-<h2>Modifier Enseignant</h2>
+<div class="container">
+<h1>Modifier l'enseignant</h1>
 
 <form action="enseignantservlet?action=update" method="post">
   <input type="hidden" name="id" value="${enseignant.id}">
@@ -26,9 +28,10 @@
   <label for="mdp">Mot de passe :</label>
   <input type="text" id="mdp" name="mdp" value="${enseignant.mdp}"required><br>
 
-  <input type="submit" value="Enregistrer les modifications">
+  <button type="submit">Modifier</button>
 </form>
-
-<a href="enseignantservlet">Retour à la liste des enseignants</a>
+  <br>
+  <a href="enseignantservlet">Retour</a>
+</div>
 </body>
 </html>

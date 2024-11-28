@@ -73,3 +73,6 @@ a button[type="button"]:nth-of-type(2) {
 a button[type="button"]:nth-of-type(2):hover {
     background-color: #3F51B5; /* Bleu plus foncé au survol */
 }
+a {
+    text-decoration: none;
+}

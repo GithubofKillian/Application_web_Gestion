@@ -1,9 +1,11 @@
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
   <meta charset="UTF-8">
   <title>Ajouter un Cours</title>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/ajouter.css">
   <script>
     // Fonction pour filtrer la liste des enseignants
     function rechercherEnseignant() {
@@ -39,7 +41,8 @@
   </script>
 </head>
 <body>
-<h2>Ajouter un Cours</h2>
+<div class="container">
+<h1>Ajouter un Cours</h1>
 
 <form action="coursservlet" method="post">
   <input type="hidden" name="action" value="create">
@@ -74,7 +77,8 @@
 
   <button type="submit">Créer</button>
 </form>
-
-<a href="coursservlet">Retour à la liste des cours</a>
+<br>
+<a href="coursservlet">Retour</a>
+</div>
 </body>
 </html>

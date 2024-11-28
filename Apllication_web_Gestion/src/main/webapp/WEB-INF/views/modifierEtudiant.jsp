@@ -37,8 +37,8 @@
 
   <button type="submit">Modifier</button>
 </form>
-
-<a href="etudiantservlet"><button type="button">Retour à la liste des etudiants</button></a>
+  <br>
+  <a href="etudiantservlet">Retour</a>
 </div>
 </body>
 </html>

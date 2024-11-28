@@ -4,9 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Ajouter un Enseignant</title>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/ajouter.css">
 </head>
 <body>
-<h2>Ajouter un Enseignant</h2>
+<div class="container">
+<h1>Ajouter un Enseignant</h1>
 
 <form action="enseignantservlet?action=create" method="post">
   <label for="nom">Nom :</label>
@@ -24,9 +26,10 @@
   <label for="mdp">Mot de passe :</label>
   <input type="text" id="mdp" name="mdp"><br>
 
-  <input type="submit" value="Ajouter Enseignant">
+  <button type="submit">Ajouter</button>
 </form>
-
-<a href="enseignantservlet">Retour à la liste des enseignants</a>
+  <br>
+  <a href="enseignantservlet">Retour</a>
+</div>
 </body>
 </html>

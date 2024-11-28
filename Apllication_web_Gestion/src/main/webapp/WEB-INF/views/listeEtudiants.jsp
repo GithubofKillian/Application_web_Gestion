@@ -41,7 +41,7 @@
             <td>${etudiant.nom}</td>
             <td>${etudiant.prenom}</td>
             <td>
-                <a href="etudiantservlet?action=detail&id=${etudiant.id}" class="btn btn-view">Voir</a>
+                <a href="etudiantservlet?action=detail&id=${etudiant.id}" class="btn btn-view">Détails</a>
                 <a href="etudiantservlet?action=edit&id=${etudiant.id}" class="btn btn-edit">Modifier</a>
                 <a href="etudiantservlet?action=delete&id=${etudiant.id}" class="btn btn-delete">Supprimer</a>
             </td>
@@ -55,6 +55,5 @@
 <a href="etudiantservlet?action=add">
     <button type="button" class="btn add-btn">Ajouter un étudiant</button>
 </a>
-
 </body>
 </html>

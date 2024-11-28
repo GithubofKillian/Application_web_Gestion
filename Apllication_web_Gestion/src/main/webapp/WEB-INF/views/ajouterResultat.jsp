@@ -9,9 +9,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Ajouter un Résultat</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/ajouter.css">
 </head>
 <body>
+<div class="container">
 <h1>Ajouter un Résultat</h1>
 <form action="resultatservlet" method="post">
     <input type="hidden" name="action" value="create">
@@ -31,6 +34,7 @@
     <input type="text" name="note"><br><br>
     <button type="submit">Ajouter</button>
 </form>
+</div>
 </body>
 </html>
 

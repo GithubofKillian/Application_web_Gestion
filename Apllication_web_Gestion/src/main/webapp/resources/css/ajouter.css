@@ -75,3 +75,7 @@ input:invalid {
 input:valid {
     border-color: #4CAF50;
 }
+
+a {
+    text-decoration: none;
+}
