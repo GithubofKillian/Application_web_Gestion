@@ -20,24 +20,24 @@ public class LoginServlet extends HttpServlet {
         request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
     }
 
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String contact = request.getParameter("contact");
         String password = request.getParameter("password");
         String role = request.getParameter("role");
 
-        System.out.println("Contact: " + contact);
-        System.out.println("Password: " + password);
-        System.out.println("Role: " + role);
+        System.out.println("[DEBUG] Contact: " + contact);
+        System.out.println("[DEBUG] Password: " + password);
+        System.out.println("[DEBUG] Role: " + role);
 
-        // Vérification avec LoginService
-        if (loginService.authenticateUser(contact, password, role)) {
-            System.out.println("La méthode authentificate renvoie true");
-            // Redirection selon le rôle
+        boolean isAuthenticated = loginService.authenticateUser(contact, password, role);
+
+        if (isAuthenticated) {
+            System.out.println("[DEBUG] Authentification réussie pour : " + contact + ", rôle : " + role);
             response.sendRedirect(request.getContextPath() + "/index.jsp");
         } else {
-            System.out.println("La méthode authentificate renvoie false");
-            // Échec d'authentification : afficher un message d'erreur
+            System.out.println("[DEBUG] Échec d'authentification pour : " + contact + ", rôle : " + role);
             request.setAttribute("error", "Identifiants incorrects ou rôle invalide.");
             request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
         }
