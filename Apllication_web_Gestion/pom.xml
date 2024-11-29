@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
@@ -7,7 +6,7 @@
     <groupId>com</groupId>
     <artifactId>Application_web_Gestion</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>Apllication_web_Gestion</name>
+    <name>Application_web_Gestion</name>
     <packaging>war</packaging>
 
     <properties>
@@ -39,12 +38,12 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>8.0.33</version> <!-- Assure-toi que c'est la dernière version compatible avec ton projet -->
+            <version>8.0.33</version>
         </dependency>
         <dependency>
             <groupId>org.hibernate</groupId>
             <artifactId>hibernate-core</artifactId>
-            <version>5.6.0.Final</version> <!-- Mets ici une version récente compatible -->
+            <version>5.6.0.Final</version>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -57,21 +56,23 @@
             <artifactId>jstl</artifactId>
             <version>1.2</version>
         </dependency>
-        <!-- JSP API compatible avec Jakarta Servlet 5.0+ -->
         <dependency>
             <groupId>jakarta.servlet.jsp</groupId>
             <artifactId>jakarta.servlet.jsp-api</artifactId>
             <version>2.3.6</version>
             <scope>provided</scope>
         </dependency>
-
-        <!-- Jakarta JSTL -->
         <dependency>
             <groupId>org.glassfish.web</groupId>
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <version>2.0.0</version>
         </dependency>
-
+        <!-- Jakarta Mail -->
+        <dependency>
+            <groupId>com.sun.mail</groupId>
+            <artifactId>jakarta.mail</artifactId>
+            <version>2.0.1</version>
+        </dependency>
     </dependencies>
 
     <build>
@@ -92,5 +93,3 @@
         </plugins>
     </build>
 </project>
-
-

@@ -17,7 +17,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Par défaut, afficher la page de connexion
-        request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+        request.getRequestDispatcher("/login.jsp").forward(request, response);
     }
 
 
@@ -27,19 +27,17 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         String role = request.getParameter("role");
 
-        //System.out.println("[DEBUG] Contact: " + contact);
-        //System.out.println("[DEBUG] Password: " + password);
-        //System.out.println("[DEBUG] Role: " + role);
-
         boolean isAuthenticated = loginService.authenticateUser(contact, password, role);
 
         if (isAuthenticated) {
-            //System.out.println("[DEBUG] Authentification réussie pour : " + contact + ", rôle : " + role);
+            // Stocker le rôle dans la session
+            request.getSession().setAttribute("userRole", role);
+
+            // Rediriger vers index.jsp
             response.sendRedirect(request.getContextPath() + "/index.jsp");
         } else {
-            //System.out.println("[DEBUG] Échec d'authentification pour : " + contact + ", rôle : " + role);
             request.setAttribute("error", "Identifiants incorrects ou rôle invalide.");
-            request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
         }
     }
 }
