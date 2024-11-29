@@ -9,9 +9,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>Modifier un Résultat</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifierEtudiant.css">
 </head>
 <body>
+<div class="container">
 <h1>Modifier un Résultat</h1>
 <form action="resultatservlet" method="post">
     <input type="hidden" name="action" value="update">
@@ -30,8 +33,11 @@
     </select><br><br>
     <label>Note :</label>
     <input type="text" name="note" value="${resultat.note}"><br><br>
-    <button type="submit">Mettre à jour</button>
+    <button type="submit">Modifier</button>
 </form>
+    <br>
+    <a href="resultatservlet">Retour</a>
+</div>
 </body>
 </html>
 

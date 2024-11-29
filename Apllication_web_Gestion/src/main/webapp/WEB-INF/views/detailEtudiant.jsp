@@ -11,9 +11,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Détails de l'Étudiant</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/detail.css">
 </head>
 <body>
-<h2>Détails de l'Étudiant</h2>
+<div class="container">
+<h1>Détails de l'Étudiant</h1>
 
 <p><strong>Nom :</strong> ${etudiant.nom}</p>
 <p><strong>Prénom :</strong> ${etudiant.prenom}</p>
@@ -24,8 +26,9 @@
 <a href="etudiantservlet?action=edit&id=${etudiant.id}">
     <button type="button">Modifier</button>
 </a>
-
-<a href="etudiantservlet"><button type="button">Retour à la liste des etudiants</button></a>
-
+<br>
+<br>
+<a href="etudiantservlet">Retour</a>
+</div>
 </body>
 </html>

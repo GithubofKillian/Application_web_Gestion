@@ -2,20 +2,20 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Home Page</title>
+    <title>Page Admin</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/index.css">
 </head>
 <body>
-<h1><%= "Home Page" %>
+<div class="container">
+<h1><%= "Page Administrateur" %>
 </h1>
-<br/>
-<a href="etudiantservlet">Etudiant</a>
-<br/>
-<a href="enseignantservlet">Enseigant</a>
-<br/>
-<a href="coursservlet">Cours</a>
-<br/>
-<a href="resultatservlet">Resultat</a>
-<br>
-<a href="LoginServlet">Authentification</a>
+    <div class="button-box">
+        <a href="etudiantservlet" class="btn">Etudiant</a>
+        <a href="enseignantservlet" class="btn">Enseignant</a>
+        <a href="coursservlet" class="btn">Cours</a>
+        <a href="resultatservlet" class="btn">Résultat</a>
+        <a href="LoginServlet" class="btn">Authentification</a>
+    </div>
+</div>
 </body>
 </html>
