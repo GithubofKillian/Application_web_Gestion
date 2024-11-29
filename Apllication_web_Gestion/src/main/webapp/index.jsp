@@ -14,7 +14,6 @@
         <a href="enseignantservlet" class="btn">Enseignant</a>
         <a href="coursservlet" class="btn">Cours</a>
         <a href="resultatservlet" class="btn">Résultat</a>
-        <a href="LoginServlet" class="btn">Authentification</a>
     </div>
 </div>
 </body>

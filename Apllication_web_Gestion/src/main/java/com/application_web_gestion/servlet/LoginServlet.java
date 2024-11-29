@@ -27,17 +27,17 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         String role = request.getParameter("role");
 
-        System.out.println("[DEBUG] Contact: " + contact);
-        System.out.println("[DEBUG] Password: " + password);
-        System.out.println("[DEBUG] Role: " + role);
+        //System.out.println("[DEBUG] Contact: " + contact);
+        //System.out.println("[DEBUG] Password: " + password);
+        //System.out.println("[DEBUG] Role: " + role);
 
         boolean isAuthenticated = loginService.authenticateUser(contact, password, role);
 
         if (isAuthenticated) {
-            System.out.println("[DEBUG] Authentification réussie pour : " + contact + ", rôle : " + role);
+            //System.out.println("[DEBUG] Authentification réussie pour : " + contact + ", rôle : " + role);
             response.sendRedirect(request.getContextPath() + "/index.jsp");
         } else {
-            System.out.println("[DEBUG] Échec d'authentification pour : " + contact + ", rôle : " + role);
+            //System.out.println("[DEBUG] Échec d'authentification pour : " + contact + ", rôle : " + role);
             request.setAttribute("error", "Identifiants incorrects ou rôle invalide.");
             request.getRequestDispatcher("/WEB-INF/views/login.jsp").forward(request, response);
         }
