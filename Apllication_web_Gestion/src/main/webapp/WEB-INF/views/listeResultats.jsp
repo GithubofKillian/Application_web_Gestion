@@ -11,7 +11,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Liste des Résultats</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/listeResultats.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/liste.css">
 </head>
 <body>
 <h1>Liste des Résultats</h1>

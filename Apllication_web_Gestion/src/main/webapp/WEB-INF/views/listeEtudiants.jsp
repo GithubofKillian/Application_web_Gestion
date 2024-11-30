@@ -15,7 +15,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Liste des Etudiants</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/listeEtudiants.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/liste.css">
 </head>
 <body>
 <h1>Liste des Etudiants</h1>
