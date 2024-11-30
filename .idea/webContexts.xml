@@ -5,6 +5,7 @@
       <map>
         <entry key="file://$PROJECT_DIR$/Apllication_web_Gestion/src/main/webapp/WEB-INF/views/ajouterResultat.jsp" value="file://$PROJECT_DIR$/Apllication_web_Gestion/src/main/webapp/WEB-INF/views" />
         <entry key="file://$PROJECT_DIR$/Apllication_web_Gestion/src/main/webapp/WEB-INF/views/detailResultat.jsp" value="file://$PROJECT_DIR$/Apllication_web_Gestion/src/main/webapp/WEB-INF/views" />
+        <entry key="file://$PROJECT_DIR$/Apllication_web_Gestion/src/main/webapp/WEB-INF/views/listeResultats.jsp" value="file://$PROJECT_DIR$/Apllication_web_Gestion/src/main/webapp/WEB-INF/views" />
       </map>
     </option>
   </component>
