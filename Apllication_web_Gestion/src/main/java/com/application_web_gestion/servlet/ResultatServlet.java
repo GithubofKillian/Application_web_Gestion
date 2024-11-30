@@ -137,20 +137,31 @@ public class ResultatServlet extends HttpServlet {
     }
 
     private void ajouterResultat(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        // Récupérer les informations du formulaire
         Long etudiantId = Long.parseLong(request.getParameter("etudiantId"));
         Long coursId = Long.parseLong(request.getParameter("coursId"));
         double note = Double.parseDouble(request.getParameter("note"));
 
+        // Vérification que la note est valide
+        if (note < 0 || note > 20) {
+            response.getWriter().write("La note doit être entre 0 et 20.");
+            return;
+        }
+
+        // Récupérer l'étudiant et le cours à partir de leurs IDs
         Etudiant etudiant = etudiantService.getEtudiant(etudiantId);
         Cours cours = coursService.getCours(coursId);
 
         if (etudiant != null && cours != null) {
+            // Créer un résultat et l'ajouter
             Resultat resultat = new Resultat(etudiant, cours, note);
             resultatService.ajouterResultat(resultat);
+            response.sendRedirect("resultatservlet?action=list");
+        } else {
+            response.getWriter().write("Étudiant ou Cours introuvable !");
         }
-
-        response.sendRedirect("resultatservlet");
     }
+
 
     private void afficherMoyenneEtudiant(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long etudiantId = Long.parseLong(request.getParameter("etudiantId"));
