@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Liste des Enseignants</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/listeEnseignants.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/liste.css">
 </head>
 <body>
 <h1>Liste des Enseignants</h1>
