@@ -6,6 +6,7 @@ import com.application_web_gestion.classe.Cours;
 import com.application_web_gestion.service.ResultatService;
 import com.application_web_gestion.service.EtudiantService;
 import com.application_web_gestion.service.CoursService;
+import com.application_web_gestion.service.EmailService;
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -21,12 +22,15 @@ public class ResultatServlet extends HttpServlet {
     private ResultatService resultatService;
     private EtudiantService etudiantService;
     private CoursService coursService;
+    private EmailService emailService;
+
 
     @Override
     public void init() {
         resultatService = new ResultatService();
         etudiantService = new EtudiantService();
         coursService = new CoursService();
+        emailService = new EmailService("nestifyweb@gmail.com", "myuw ztfg gmhv joes");
     }
 
     @Override
@@ -147,10 +151,19 @@ public class ResultatServlet extends HttpServlet {
         if (etudiant != null && cours != null) {
             Resultat resultat = new Resultat(etudiant, cours, note);
             resultatService.ajouterResultat(resultat);
+
+            // Envoi de l'email via EmailService
+            String destinataire = etudiant.getContact(); // Email de l'étudiant
+            String sujet = "Nouvelle Note Ajoutée";
+            String contenu = "Bonjour " + etudiant.getNom() + " " + etudiant.getPrenom() +
+                    ",\n\nVotre note pour le cours " + cours.getNom() +
+                    " a été enregistrée avec succès : " + note + ".\n\nCordialement,\nL'équipe de Gestion Scolarité.";
+            emailService.envoyerEmail(destinataire, sujet, contenu);
         }
 
         response.sendRedirect("resultatservlet");
     }
+
 
     private void afficherMoyenneEtudiant(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long etudiantId = Long.parseLong(request.getParameter("etudiantId"));
@@ -163,4 +176,5 @@ public class ResultatServlet extends HttpServlet {
         double moyenne = resultatService.calculerMoyenneParCours(coursId);
         response.getWriter().write("Moyenne du cours : " + moyenne);
     }
+
 }
