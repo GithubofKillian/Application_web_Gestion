@@ -165,6 +165,7 @@ public class ResultatServlet extends HttpServlet {
     }
 
 
+
     private void afficherMoyenneEtudiant(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long etudiantId = Long.parseLong(request.getParameter("etudiantId"));
         double moyenne = resultatService.calculerMoyenneParEtudiant(etudiantId);
