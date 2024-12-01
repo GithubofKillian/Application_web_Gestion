@@ -16,6 +16,7 @@
             return true; // Permet l'envoi du formulaire
         }
     </script>
+
 </head>
 <body>
 <div class="container">
@@ -42,6 +43,8 @@
 
         <button type="submit">Ajouter</button>
     </form>
+    <br>
+    <a href="resultatservlet">Retour</a>
 </div>
 </body>
 </html>

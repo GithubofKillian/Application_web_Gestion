@@ -16,8 +16,10 @@
     <meta charset="UTF-8">
     <title>Liste des Etudiants</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/liste.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/menu.css">
 </head>
 <body>
+<%@ include file="menu.jsp" %>
 <h1>Liste des Etudiants</h1>
 
 <!-- Formulaire de recherche -->

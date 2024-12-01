@@ -12,8 +12,10 @@
     <meta charset="UTF-8">
     <title>Liste des Résultats</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/liste.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/menu.css">
 </head>
 <body>
+<%@ include file="menu.jsp" %>
 <h1>Liste des Résultats</h1>
 <%
     String userRole = (String) session.getAttribute("userRole");
@@ -23,7 +25,6 @@
 <table>
     <thead>
     <tr>
-        <th>ID</th>
         <th>Étudiant</th>
         <th>Cours</th>
         <th>Note</th>
@@ -33,7 +34,6 @@
     <tbody>
     <c:forEach var="resultat" items="${resultats}">
         <tr>
-            <td>${resultat.id}</td>
             <td>${resultat.etudiant.nom} ${resultat.etudiant.prenom}</td>
             <td>${resultat.cours.nom}</td>
             <td>${resultat.note}</td>
@@ -134,4 +134,3 @@
 
 </body>
 </html>
-

@@ -16,37 +16,6 @@ h1 {
     margin-top: 20px;
 }
 
-/* Formulaire de recherche */
-form {
-    margin: 20px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-}
-
-form input[type="text"] {
-    padding: 8px;
-    font-size: 14px;
-    width: 200px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
-
-form button {
-    padding: 8px 15px;
-    font-size: 14px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-form button:hover {
-    background-color: #45a049;
-}
-
 /* Table des étudiants */
 table {
     width: 80%;
@@ -90,38 +59,8 @@ tr:hover {
     transform: scale(1.05); /* Effet d'agrandissement au survol */
 }
 
-/* Bouton Voir - Couleur bleu clair */
-.btn-view {
-    background-color: #5C6BC0; /* Bleu grisâtre */
-    color: white;
-}
-
-.btn-view:hover {
-    background-color: #3F51B5; /* Bleu légèrement plus foncé */
-}
-
-/* Bouton Modifier - Couleur orange pâle */
-.btn-edit {
-    background-color: #FFA726; /* Orange pâle */
-    color: white;
-}
-
-.btn-edit:hover {
-    background-color: #FF9800; /* Orange légèrement plus foncé */
-}
-
-/* Bouton Supprimer - Couleur rouge clair */
-.btn-delete {
-    background-color: #EF5350; /* Rouge clair */
-    color: white;
-}
-
-.btn-delete:hover {
-    background-color: #F44336; /* Rouge légèrement plus foncé */
-}
-
 /* Styles pour le bouton Ajouter */
-.add-btn {
+.dl-btn {
     padding: 10px 20px;
     font-size: 16px;
     background-color: #4CAF50; /* Vert classique */
@@ -137,7 +76,7 @@ tr:hover {
     white-space: nowrap; /* Empêcher le texte de se casser en plusieurs lignes */
 }
 
-.add-btn:hover {
+.dl-btn:hover {
     background-color: #45a049; /* Vert plus foncé au survol */
 }
 

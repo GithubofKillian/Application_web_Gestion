@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>Détails du Résultat</title>
+
 </head>
 <body>
 <h1>Détails du Résultat</h1>

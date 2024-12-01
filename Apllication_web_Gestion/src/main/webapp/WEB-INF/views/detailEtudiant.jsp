@@ -12,6 +12,7 @@
     <meta charset="UTF-8">
     <title>Détails de l'Étudiant</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/detail.css">
+
 </head>
 <body>
 <div class="container">

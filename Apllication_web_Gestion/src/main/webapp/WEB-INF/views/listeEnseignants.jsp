@@ -6,14 +6,15 @@
     <meta charset="UTF-8">
     <title>Liste des Enseignants</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/liste.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/menu.css">
 </head>
 <body>
+<%@ include file="menu.jsp" %>
 <h1>Liste des Enseignants</h1>
 
 <table>
     <thead>
     <tr>
-        <th>ID</th>
         <th>Nom</th>
         <th>Prénom</th>
         <th>Contact</th>
@@ -23,7 +24,6 @@
     <tbody>
     <c:forEach var="enseignant" items="${enseignants}">
         <tr>
-            <td>${enseignant.id}</td>
             <td>${enseignant.nom}</td>
             <td>${enseignant.prenom}</td>
             <td>${enseignant.contact}</td>

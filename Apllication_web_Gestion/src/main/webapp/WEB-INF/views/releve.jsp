@@ -6,8 +6,10 @@
 <html>
 <head>
     <title>Relevé de Notes</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/liste.css">
 </head>
 <body>
+
 <h1>Relevé de Notes</h1>
 
 <!-- Affichage du message d'erreur si nécessaire -->
@@ -22,7 +24,7 @@
     <p>Moyenne générale : ${moyenne}</p>
 
     <!-- Tableau des résultats -->
-    <table border="1">
+    <table>
         <thead>
         <tr>
             <th>Cours</th>
@@ -41,7 +43,11 @@
     </table>
 
     <!-- Lien pour télécharger le relevé PDF -->
-    <p><a href="${filePath}" download>Télécharger le relevé PDF</a></p>
+    <a href="${filePath}" download>
+        <button type="button" class="btn dl-btn">Télécharger le relevé PDF</button>
+    </a>
 </c:if>
+<br>
+<a href="resultatservlet">Retour</a>
 </body>
 </html>

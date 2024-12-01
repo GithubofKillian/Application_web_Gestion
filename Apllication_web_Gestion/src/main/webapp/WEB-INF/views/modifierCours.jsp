@@ -1,9 +1,11 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
     <title>Modifier le Cours</title>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifier.css">
     <script>
         // Fonction pour filtrer la liste des enseignants
         function rechercherEnseignant() {
@@ -37,9 +39,11 @@
             document.getElementById('etudiant-message').style.display = resultat ? 'none' : 'block';
         }
     </script>
+
 </head>
 <body>
-<h2>Modifier le Cours</h2>
+<div class="container">
+<h1>Modifier le Cours</h1>
 
 <form action="coursservlet" method="post">
     <input type="hidden" name="action" value="update">
@@ -75,7 +79,8 @@
 
     <button type="submit">Mettre à jour</button>
 </form>
-
-<a href="coursservlet">Retour à la liste des cours</a>
+<br>
+<a href="coursservlet">Retour</a>
+</div>
 </body>
 </html>
