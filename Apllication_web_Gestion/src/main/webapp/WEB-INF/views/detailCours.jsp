@@ -31,9 +31,7 @@
   <%
   } else if ("Enseignant".equals(userRole)) {
   %>
-  <a href="coursservlet?action=edit&id=${cours.id}">
-    <button type="button">Modifier</button>
-  </a>
+
   <%
   } else if ("Etudiant".equals(userRole)) {
   %>

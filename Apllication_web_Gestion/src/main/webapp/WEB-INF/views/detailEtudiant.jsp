@@ -23,9 +23,31 @@
 <p><strong>Contact :</strong> ${etudiant.contact}</p>
 <p><strong>Mot de passe :</strong> ${etudiant.mdp}</p>
 
-<a href="etudiantservlet?action=edit&id=${etudiant.id}">
-    <button type="button">Modifier</button>
-</a>
+    <%
+        String userRole = (String) session.getAttribute("userRole");
+
+        if ("Admin".equals(userRole)) {
+    %>
+    <a href="etudiantservlet?action=edit&id=${etudiant.id}">
+        <button type="button">Modifier</button>
+    </a>
+    <%
+    } else if ("Enseignant".equals(userRole)) {
+    %>
+
+    <%
+    } else if ("Etudiant".equals(userRole)) {
+    %>
+
+    <%
+    } else {
+    %>
+    <p>Rôle inconnu. Veuillez vous reconnecter.</p>
+    <%
+        }
+    %>
+
+
 <br>
 <br>
 <a href="etudiantservlet">Retour</a>

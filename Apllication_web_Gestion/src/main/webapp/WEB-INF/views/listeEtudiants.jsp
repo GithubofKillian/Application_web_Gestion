@@ -42,8 +42,29 @@
             <td>${etudiant.prenom}</td>
             <td>
                 <a href="etudiantservlet?action=detail&id=${etudiant.id}" class="btn btn-view">Détails</a>
+                <%
+                    String userRole = (String) session.getAttribute("userRole");
+
+                    if ("Admin".equals(userRole)) {
+                %>
                 <a href="etudiantservlet?action=edit&id=${etudiant.id}" class="btn btn-edit">Modifier</a>
                 <a href="etudiantservlet?action=delete&id=${etudiant.id}" class="btn btn-delete">Supprimer</a>
+                <%
+                } else if ("Enseignant".equals(userRole)) {
+                %>
+
+                <%
+                } else if ("Etudiant".equals(userRole)) {
+                %>
+
+                <%
+                } else {
+                %>
+                <p>Rôle inconnu. Veuillez vous reconnecter.</p>
+                <%
+                    }
+                %>
+
             </td>
         </tr>
     </c:forEach>
@@ -52,8 +73,28 @@
 <br>
 
 <!-- Lien pour ajouter un nouvel étudiant -->
+<%
+    String userRole = (String) session.getAttribute("userRole");
+
+    if ("Admin".equals(userRole)) {
+%>
 <a href="etudiantservlet?action=add">
     <button type="button" class="btn add-btn">Ajouter un étudiant</button>
 </a>
+<%
+} else if ("Enseignant".equals(userRole)) {
+%>
+
+<%
+} else if ("Etudiant".equals(userRole)) {
+%>
+
+<%
+} else {
+%>
+<p>Rôle inconnu. Veuillez vous reconnecter.</p>
+<%
+    }
+%>
 </body>
 </html>

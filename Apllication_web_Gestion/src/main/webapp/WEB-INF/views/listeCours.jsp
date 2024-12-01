@@ -63,18 +63,12 @@
             <td>${cours.enseignant.nom}</td>
             <td>
                 <a href="coursservlet?action=detail&id=${cours.id}" class="btn btn-view">Détails</a>
-                <a href="coursservlet?action=edit&id=${cours.id}" class="btn btn-edit">Modifier</a>
-                <a href="coursservlet?action=delete&id=${cours.id}" class="btn btn-delete">Supprimer</a>
             </td>
         </tr>
     </c:forEach>
 </table>
 <br>
 
-<!-- Lien pour ajouter un nouvel étudiant -->
-<a href="coursservlet?action=add">
-    <button type="button" class="btn add-btn">Ajouter un cours</button>
-</a>
 <%
 } else if ("Etudiant".equals(userRole)) {
 %>
