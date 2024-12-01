@@ -14,7 +14,6 @@
 
 <br>
 <%
-    String userRole = (String) session.getAttribute("userRole");
 
     if ("Admin".equals(userRole)) {
 %>

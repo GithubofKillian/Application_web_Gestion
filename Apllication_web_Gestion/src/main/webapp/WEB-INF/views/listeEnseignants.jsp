@@ -31,7 +31,6 @@
                 <a href="enseignantservlet?action=detail&id=${enseignant.id}" class="btn btn-view">Détails</a>
                 <a href="enseignantservlet?action=edit&id=${enseignant.id}" class="btn btn-edit">Modifier</a>
                 <a href="enseignantservlet?action=delete&id=${enseignant.id}" class="btn btn-delete">Supprimer</a>
-                <a href="enseignantservlet?action=assignCourse&enseignantId=${enseignant.id}" class="btn btn-link">Affecter Cours</a>
             </td>
         </tr>
     </c:forEach>

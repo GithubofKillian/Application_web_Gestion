@@ -45,7 +45,6 @@
             <td>
                 <a href="etudiantservlet?action=detail&id=${etudiant.id}" class="btn btn-view">Détails</a>
                 <%
-                    String userRole = (String) session.getAttribute("userRole");
 
                     if ("Admin".equals(userRole)) {
                 %>
@@ -76,7 +75,6 @@
 
 <!-- Lien pour ajouter un nouvel étudiant -->
 <%
-    String userRole = (String) session.getAttribute("userRole");
 
     if ("Admin".equals(userRole)) {
 %>

@@ -18,7 +18,6 @@
 <%@ include file="menu.jsp" %>
 <h1>Liste des Résultats</h1>
 <%
-    String userRole = (String) session.getAttribute("userRole");
 
     if ("Admin".equals(userRole)) {
 %>
