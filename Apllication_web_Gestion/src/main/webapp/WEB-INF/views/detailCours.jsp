@@ -20,9 +20,31 @@
     <li>${etudiant.nom} ${etudiant.prenom}</li>
   </c:forEach>
 </ul>
+  <%
+    String userRole = (String) session.getAttribute("userRole");
+
+    if ("Admin".equals(userRole)) {
+  %>
   <a href="coursservlet?action=edit&id=${cours.id}">
     <button type="button">Modifier</button>
   </a>
+  <%
+  } else if ("Enseignant".equals(userRole)) {
+  %>
+  <a href="coursservlet?action=edit&id=${cours.id}">
+    <button type="button">Modifier</button>
+  </a>
+  <%
+  } else if ("Etudiant".equals(userRole)) {
+  %>
+
+  <%
+  } else {
+  %>
+  <p>Rôle inconnu. Veuillez vous reconnecter.</p>
+  <%
+    }
+  %>
   <br>
   <br>
 <a href="coursservlet">Retour</a>
