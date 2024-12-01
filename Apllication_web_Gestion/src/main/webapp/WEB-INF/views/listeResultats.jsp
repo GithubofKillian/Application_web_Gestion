@@ -17,7 +17,11 @@
 <body>
 <%@ include file="menu.jsp" %>
 <h1>Liste des Résultats</h1>
+<%
+    String userRole = (String) session.getAttribute("userRole");
 
+    if ("Admin".equals(userRole)) {
+%>
 <table>
     <thead>
     <tr>
@@ -46,6 +50,70 @@
 <a href="resultatservlet?action=add">
     <button type="button" class="btn add-btn">Ajouter un Résultat</button>
 </a>
+<%
+} else if ("Enseignant".equals(userRole)) {
+%>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Étudiant</th>
+        <th>Cours</th>
+        <th>Note</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach var="resultat" items="${resultats}">
+        <tr>
+            <td>${resultat.id}</td>
+            <td>${resultat.etudiant.nom} ${resultat.etudiant.prenom}</td>
+            <td>${resultat.cours.nom}</td>
+            <td>${resultat.note}</td>
+            <td>
+                <a href="resultatservlet?action=edit&id=${resultat.id}" class="btn btn-edit">Modifier</a>
+                <a href="resultatservlet?action=delete&id=${resultat.id}" class="btn btn-delete" onclick="return confirm('Confirmer la suppression ?');">Supprimer</a>
+            </td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
+<br>
+
+<a href="resultatservlet?action=add">
+    <button type="button" class="btn add-btn">Ajouter un Résultat</button>
+</a>
+<%
+} else if ("Etudiant".equals(userRole)) {
+%>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Étudiant</th>
+        <th>Cours</th>
+        <th>Note</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <c:forEach var="resultat" items="${resultats}">
+        <tr>
+            <td>${resultat.id}</td>
+            <td>${resultat.etudiant.nom} ${resultat.etudiant.prenom}</td>
+            <td>${resultat.cours.nom}</td>
+            <td>${resultat.note}</td>
+        </tr>
+    </c:forEach>
+    </tbody>
+</table>
+<%
+} else {
+%>
+<p>Rôle inconnu. Veuillez vous reconnecter.</p>
+<%
+    }
+%>
 
 <br>
 <!-- Section pour générer le relevé PDF -->
