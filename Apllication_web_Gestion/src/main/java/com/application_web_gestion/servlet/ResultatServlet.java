@@ -81,8 +81,16 @@ public class ResultatServlet extends HttpServlet {
 
 
     private void afficherListeResultats(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        // Récupération de tous les résultats
         List<Resultat> resultats = resultatService.getAllResultats();
+        // Récupération de tous les étudiants
+        List<Etudiant> etudiants = etudiantService.getAllEtudiants();
+
+        // Passage des résultats et des étudiants à la JSP
         request.setAttribute("resultats", resultats);
+        request.setAttribute("etudiants", etudiants);  // Ajouter la liste des étudiants ici
+
+        // Affichage de la JSP
         request.getRequestDispatcher("/WEB-INF/views/listeResultats.jsp").forward(request, response);
     }
 
