@@ -4,7 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Modifier Enseignant</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifierEnseignant.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifier.css">
+
 </head>
 <body>
 <div class="container">

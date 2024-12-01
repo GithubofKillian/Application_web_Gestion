@@ -11,7 +11,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Modifier un Résultat</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifierEtudiant.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/modifier.css">
+
 </head>
 <body>
 <div class="container">

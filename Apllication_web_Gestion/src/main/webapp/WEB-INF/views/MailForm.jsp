@@ -4,6 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Envoi d'un Email</title>
+
 </head>
 <body>
 <h1>Envoyer un Email</h1>

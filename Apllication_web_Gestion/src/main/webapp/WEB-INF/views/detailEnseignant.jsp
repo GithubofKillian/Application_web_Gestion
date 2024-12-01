@@ -5,6 +5,7 @@
   <meta charset="UTF-8">
   <title>Détails de l'Enseignant</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/detail.css">
+
 </head>
 <body>
 <div class="container">
