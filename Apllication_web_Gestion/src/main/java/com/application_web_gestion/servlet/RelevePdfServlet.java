@@ -3,7 +3,7 @@ package com.application_web_gestion.servlet;
 import com.application_web_gestion.classe.Etudiant;
 import com.application_web_gestion.classe.Resultat;
 import com.application_web_gestion.classe.HibernateUtil;
-import com.application_web_gestion.service.RelevePdfService;
+import com.application_web_gestion.service.*;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
@@ -17,6 +17,12 @@ import java.util.List;
 @WebServlet("/relevepdfservlet")
 public class RelevePdfServlet extends HttpServlet {
 
+    private RelevePdfService relevePdfService;
+
+    @Override
+    public void init() {
+        relevePdfService = new RelevePdfService();
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -42,8 +48,6 @@ public class RelevePdfServlet extends HttpServlet {
                 return;
             }
 
-            // Utilisation du service RelevePdfService pour récupérer les résultats
-            RelevePdfService relevePdfService = new RelevePdfService();
             List<Resultat> resultats = relevePdfService.getResultatsParEtudiant(session, etudiant.getId());
 
             if (resultats == null || resultats.isEmpty()) {
