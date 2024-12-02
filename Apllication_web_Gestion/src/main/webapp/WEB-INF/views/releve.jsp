@@ -6,7 +6,7 @@
 <html>
 <head>
     <title>Relevé de Notes</title>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/liste.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/releve.css">
 </head>
 <body>
 
@@ -41,7 +41,7 @@
         </c:forEach>
         </tbody>
     </table>
-
+    <br>
     <!-- Lien pour télécharger le relevé PDF -->
     <a href="${filePath}" download>
         <button type="button" class="btn dl-btn">Télécharger le relevé PDF</button>

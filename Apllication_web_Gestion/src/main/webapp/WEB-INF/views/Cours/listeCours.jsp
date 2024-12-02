@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/menu.css">
 </head>
 <body>
-<%@ include file="menu.jsp" %>
+<%@ include file="../menu.jsp" %>
 <h1>Liste des Cours</h1>
 
 <br>

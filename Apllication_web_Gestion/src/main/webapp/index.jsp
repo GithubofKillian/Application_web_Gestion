@@ -37,7 +37,9 @@
             }
         %>
     </div>
+    <br>
+    <a href="${pageContext.request.contextPath}/LogoutServlet">Déconnexion</a>
 </div>
-<a href="${pageContext.request.contextPath}/LogoutServlet" class="btn">Déconnexion</a>
+
 </body>
 </html>

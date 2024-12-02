@@ -74,7 +74,7 @@ public class CoursServlet extends HttpServlet {
     private void afficherListeCours(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Cours> cours = coursService.getAllCours();
         request.setAttribute("cours", cours);
-        request.getRequestDispatcher("/WEB-INF/views/listeCours.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/Cours/listeCours.jsp").forward(request, response);
     }
 
     private void afficherFormulaireCreation(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -82,14 +82,14 @@ public class CoursServlet extends HttpServlet {
         List<Etudiant> etudiants = etudiantService.getAllEtudiants();
         request.setAttribute("enseignants", enseignants);
         request.setAttribute("etudiants", etudiants);
-        request.getRequestDispatcher("/WEB-INF/views/ajouterCours.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/Cours/ajouterCours.jsp").forward(request, response);
     }
 
     private void afficherDetailCours(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
         Cours cours = coursService.getCours(id);
         request.setAttribute("cours", cours);
-        request.getRequestDispatcher("/WEB-INF/views/detailCours.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/Cours/detailCours.jsp").forward(request, response);
     }
 
     private void afficherFormulaireModification(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -100,7 +100,7 @@ public class CoursServlet extends HttpServlet {
         request.setAttribute("cours", cours);
         request.setAttribute("enseignants", enseignants);
         request.setAttribute("etudiants", etudiants);
-        request.getRequestDispatcher("/WEB-INF/views/modifierCours.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/Cours/modifierCours.jsp").forward(request, response);
     }
 
     private void ajouterCours(HttpServletRequest request, HttpServletResponse response) throws IOException {

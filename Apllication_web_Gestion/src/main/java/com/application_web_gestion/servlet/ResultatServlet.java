@@ -91,7 +91,7 @@ public class ResultatServlet extends HttpServlet {
         request.setAttribute("etudiants", etudiants);  // Ajouter la liste des étudiants ici
 
         // Affichage de la JSP
-        request.getRequestDispatcher("/WEB-INF/views/listeResultats.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/Resultat/listeResultats.jsp").forward(request, response);
     }
 
     private void afficherFormulaireAjout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -99,7 +99,7 @@ public class ResultatServlet extends HttpServlet {
         List<Cours> cours = coursService.getAllCours();
         request.setAttribute("etudiants", etudiants);
         request.setAttribute("cours", cours);
-        request.getRequestDispatcher("/WEB-INF/views/ajouterResultat.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/Resultat/ajouterResultat.jsp").forward(request, response);
     }
 
     private void afficherFormulaireModification(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -111,7 +111,7 @@ public class ResultatServlet extends HttpServlet {
             request.setAttribute("resultat", resultat);
             request.setAttribute("etudiants", etudiants);
             request.setAttribute("cours", cours);
-            request.getRequestDispatcher("/WEB-INF/views/modifierResultat.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/Resultat/modifierResultat.jsp").forward(request, response);
         } else {
             response.getWriter().write("Résultat introuvable !");
         }
@@ -142,7 +142,7 @@ public class ResultatServlet extends HttpServlet {
         Resultat resultat = resultatService.getResultat(resultatId);
         if (resultat != null) {
             request.setAttribute("resultat", resultat);
-            request.getRequestDispatcher("/WEB-INF/views/detailResultat.jsp").forward(request, response);
+            request.getRequestDispatcher("/WEB-INF/views/Resultat/detailResultat.jsp").forward(request, response);
         } else {
             response.getWriter().write("Résultat introuvable !");
         }

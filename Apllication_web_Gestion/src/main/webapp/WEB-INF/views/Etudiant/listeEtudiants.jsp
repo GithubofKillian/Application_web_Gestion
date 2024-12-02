@@ -19,7 +19,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/menu.css">
 </head>
 <body>
-<%@ include file="menu.jsp" %>
+<%@ include file="../menu.jsp" %>
 <h1>Liste des Etudiants</h1>
 
 <!-- Formulaire de recherche -->

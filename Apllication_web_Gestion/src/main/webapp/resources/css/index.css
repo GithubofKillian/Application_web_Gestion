@@ -51,3 +51,7 @@ h1 {
 .btn:focus {
     outline: none;
 }
+/* Styles pour les liens */
+a {
+    text-decoration: none;
+}

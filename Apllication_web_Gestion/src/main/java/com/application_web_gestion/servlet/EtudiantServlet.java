@@ -39,7 +39,7 @@ public class EtudiantServlet extends HttpServlet {
             case "edit" -> afficherFormulaireModification(request, response);
             case "delete" -> supprimerEtudiant(request, response);
             case "search" -> rechercherEtudiantsParNom(request, response);
-            case "add" -> request.getRequestDispatcher("/WEB-INF/views/ajouterEtudiant.jsp").forward(request, response);
+            case "add" -> request.getRequestDispatcher("/WEB-INF/views/Etudiant/ajouterEtudiant.jsp").forward(request, response);
             default -> afficherListeEtudiants(request, response);
         }
     }
@@ -59,27 +59,27 @@ public class EtudiantServlet extends HttpServlet {
         String nomRecherche = request.getParameter("nomRecherche");
         List<Etudiant> etudiants = etudiantService.rechercherEtudiantsParNom(nomRecherche.trim());
         request.setAttribute("etudiants", etudiants);
-        request.getRequestDispatcher("/WEB-INF/views/listeEtudiants.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/Etudiant/listeEtudiants.jsp").forward(request, response);
     }
 
     private void afficherDetailEtudiant(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long id = parseLongParameter(request.getParameter("id"));
         Etudiant etudiant = etudiantService.getEtudiant(id);
         request.setAttribute("etudiant", etudiant);
-        request.getRequestDispatcher("/WEB-INF/views/detailEtudiant.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/Etudiant/detailEtudiant.jsp").forward(request, response);
     }
 
     private void afficherListeEtudiants(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Etudiant> etudiants = etudiantService.getAllEtudiants();
         request.setAttribute("etudiants", etudiants);
-        request.getRequestDispatcher("/WEB-INF/views/listeEtudiants.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/Etudiant/listeEtudiants.jsp").forward(request, response);
     }
 
     private void afficherFormulaireModification(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long id = parseLongParameter(request.getParameter("id"));
         Etudiant etudiant = etudiantService.getEtudiant(id);
         request.setAttribute("etudiant", etudiant);
-        request.getRequestDispatcher("/WEB-INF/views/modifierEtudiant.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/Etudiant/modifierEtudiant.jsp").forward(request, response);
     }
 
     private void ajouterEtudiant(HttpServletRequest request, HttpServletResponse response) throws IOException {

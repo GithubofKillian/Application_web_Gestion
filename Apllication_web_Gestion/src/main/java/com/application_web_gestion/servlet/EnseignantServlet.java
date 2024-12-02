@@ -30,7 +30,7 @@ public class EnseignantServlet extends HttpServlet {
         } else {
             switch (action) {
                 case "add":
-                    request.getRequestDispatcher("/WEB-INF/views/ajouterEnseignant.jsp").forward(request, response);
+                    request.getRequestDispatcher("/WEB-INF/views/Enseignant/ajouterEnseignant.jsp").forward(request, response);
                     break;
                 case "detail":
                     afficherDetailEnseignant(request, response);
@@ -65,21 +65,21 @@ public class EnseignantServlet extends HttpServlet {
     private void afficherListeEnseignants(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Enseignant> enseignants = enseignantService.getAllEnseignant();
         request.setAttribute("enseignants", enseignants);
-        request.getRequestDispatcher("/WEB-INF/views/listeEnseignants.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/Enseignant/listeEnseignants.jsp").forward(request, response);
     }
 
     private void afficherDetailEnseignant(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
         Enseignant enseignant = enseignantService.getEnseignant(id);
         request.setAttribute("enseignant", enseignant);
-        request.getRequestDispatcher("/WEB-INF/views/detailEnseignant.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/Enseignant/detailEnseignant.jsp").forward(request, response);
     }
 
     private void afficherFormulaireModification(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Long id = Long.parseLong(request.getParameter("id"));
         Enseignant enseignant = enseignantService.getEnseignant(id);
         request.setAttribute("enseignant", enseignant);
-        request.getRequestDispatcher("/WEB-INF/views/modifierEnseignant.jsp").forward(request, response);
+        request.getRequestDispatcher("/WEB-INF/views/Enseignant/modifierEnseignant.jsp").forward(request, response);
     }
 
     private void ajouterEnseignant(HttpServletRequest request, HttpServletResponse response) throws IOException {
