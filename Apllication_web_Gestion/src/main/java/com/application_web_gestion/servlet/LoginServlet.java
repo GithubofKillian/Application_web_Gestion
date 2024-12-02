@@ -32,6 +32,7 @@ public class LoginServlet extends HttpServlet {
         if (isAuthenticated) {
             // Stocker le rôle dans la session
             request.getSession().setAttribute("userRole", role);
+            request.getSession().setAttribute("userContact", contact);
 
             // Rediriger vers index.jsp
             response.sendRedirect(request.getContextPath() + "/index.jsp");

@@ -5,6 +5,7 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.query.Query;
 
 import java.util.List;
 
@@ -51,11 +52,22 @@ public class ResultatService {
     }
 
     // Récupérer les résultats d'un étudiant
-    public List<Resultat> getResultatsParEtudiant(Long etudiantId) {
-        try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM Resultat WHERE etudiant.id = :etudiantId", Resultat.class)
-                    .setParameter("etudiantId", etudiantId)
-                    .list();
+    public List<Resultat> getResultatsParEtudiant(Session session, Long etudiantId) {
+        System.out.println("[DEBUG] getResultatsParEtudiant - Étudiant ID : " + etudiantId);
+        String hql = "FROM Resultat r WHERE r.etudiant.id = :etudiantId";
+
+        System.out.println("[DEBUG] HQL : " + hql);
+        try {
+            Query<Resultat> query = session.createQuery(hql, Resultat.class);
+            query.setParameter("etudiantId", etudiantId);
+
+            List<Resultat> resultats = query.getResultList();
+            System.out.println("[DEBUG] Nombre de résultats trouvés : " + resultats.size());
+            return resultats;
+        } catch (Exception e) {
+            System.err.println("[ERROR] getResultatsParEtudiant - Exception : " + e.getMessage());
+            e.printStackTrace();
+            return null;
         }
     }
 
@@ -69,8 +81,8 @@ public class ResultatService {
     }
 
     // Calculer la moyenne des résultats d'un étudiant
-    public double calculerMoyenneParEtudiant(Long etudiantId) {
-        List<Resultat> resultats = getResultatsParEtudiant(etudiantId);
+    public double calculerMoyenneParEtudiant(Session session,Long etudiantId) {
+        List<Resultat> resultats = getResultatsParEtudiant(session, etudiantId);
         return resultats.stream()
                 .mapToDouble(Resultat::getNote)
                 .average()

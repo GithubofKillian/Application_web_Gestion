@@ -119,13 +119,8 @@
 <div>
     <h2>Relevé de notes</h2>
     <form action="relevepdfservlet" method="get">
-        <label for="etudiantEmail">Sélectionnez un étudiant :</label>
-        <select id="etudiantEmail" name="etudiantEmail" required>
-            <!-- Boucle pour afficher les étudiants -->
-            <c:forEach var="etudiant" items="${etudiants}">
-                <option value="${etudiant.contact}">${etudiant.nom} ${etudiant.prenom} (${etudiant.contact})</option>
-            </c:forEach>
-        </select>
+        <input type="hidden" id="etudiantEmail" name="etudiantEmail" value="${sessionScope.contact}">
+        <p>Étudiant sélectionné : (${sessionScope.contact})</p>
         <button type="submit" class="btn btn-pdf">Générer le relevé PDF</button>
     </form>
 </div>

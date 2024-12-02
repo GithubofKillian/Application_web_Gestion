@@ -1,8 +1,6 @@
 package com.application_web_gestion.servlet;
 
-import com.application_web_gestion.classe.Resultat;
-import com.application_web_gestion.classe.Etudiant;
-import com.application_web_gestion.classe.Cours;
+import com.application_web_gestion.classe.*;
 import com.application_web_gestion.service.ResultatService;
 import com.application_web_gestion.service.EtudiantService;
 import com.application_web_gestion.service.CoursService;
@@ -13,6 +11,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import org.hibernate.Session;
 
 import java.io.IOException;
 import java.util.List;
@@ -24,6 +24,7 @@ public class ResultatServlet extends HttpServlet {
     private CoursService coursService;
     private EmailService emailService;
 
+    Session session = HibernateUtil.getSessionFactory().openSession();
 
     @Override
     public void init() {
@@ -38,8 +39,28 @@ public class ResultatServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action == null) {
-            afficherListeResultats(request, response);
-            return;
+            // Récupération de la variable de session 'role'
+            HttpSession sessionweb = request.getSession();
+            String role = (String) sessionweb.getAttribute("userRole");
+            String contact = (String) sessionweb.getAttribute("userContact");
+            switch (role) {
+                case "Etudiant":
+                    afficherListeResultatsUnEleve(request, response, contact);
+                    return;
+
+                case "Enseignant":
+                    afficherListeResultats(request, response);
+                    return;
+
+                case "Admin":
+                    afficherListeResultats(request, response);
+                    return;
+
+                default:
+                    // Action par défaut si le rôle n'est pas reconnu
+                    response.sendError(HttpServletResponse.SC_FORBIDDEN, "Accès non autorisé.");
+                    return;
+            }
         }
 
         switch (action) {
@@ -89,6 +110,25 @@ public class ResultatServlet extends HttpServlet {
         // Passage des résultats et des étudiants à la JSP
         request.setAttribute("resultats", resultats);
         request.setAttribute("etudiants", etudiants);  // Ajouter la liste des étudiants ici
+
+        // Affichage de la JSP
+        request.getRequestDispatcher("/WEB-INF/views/Resultat/listeResultats.jsp").forward(request, response);
+    }
+
+    private void afficherListeResultatsUnEleve(HttpServletRequest request, HttpServletResponse response,String contact) throws ServletException, IOException {
+
+        Etudiant etudiant = session.createQuery("FROM Etudiant WHERE contact = :email", Etudiant.class)
+                .setParameter("email", contact)
+                .uniqueResult();
+
+        if (etudiant == null) {
+            response.getWriter().write("Erreur : Étudiant non trouvé !");
+            return;
+        }
+        List<Resultat> resultats = resultatService.getResultatsParEtudiant(session, etudiant.getId());
+
+        // Passage des résultats et des étudiants à la JSP
+        request.setAttribute("resultats", resultats);
 
         // Affichage de la JSP
         request.getRequestDispatcher("/WEB-INF/views/Resultat/listeResultats.jsp").forward(request, response);
@@ -176,7 +216,7 @@ public class ResultatServlet extends HttpServlet {
 
     private void afficherMoyenneEtudiant(HttpServletRequest request, HttpServletResponse response) throws IOException {
         Long etudiantId = Long.parseLong(request.getParameter("etudiantId"));
-        double moyenne = resultatService.calculerMoyenneParEtudiant(etudiantId);
+        double moyenne = resultatService.calculerMoyenneParEtudiant(session, etudiantId);
         response.getWriter().write("Moyenne de l'étudiant : " + moyenne);
     }
 
