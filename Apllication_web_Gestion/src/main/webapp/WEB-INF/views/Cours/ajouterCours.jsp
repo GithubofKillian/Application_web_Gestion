@@ -41,6 +41,7 @@
   </script>
 </head>
 <body>
+<%@ include file="../menu.jsp" %>
 <div class="container">
 <h1>Ajouter un Cours</h1>
 
@@ -50,6 +51,10 @@
   <label for="nom">Nom du cours:</label>
   <input type="text" name="nom" id="nom" required><br><br>
 
+  <%
+
+    if ("Admin".equals(userRole)) {
+  %>
   <!-- Recherche et sélection d'enseignant -->
   <label for="enseignant">Enseignant:</label>
   <input type="text" id="rechercheEnseignant" placeholder="Rechercher un enseignant..." onkeyup="rechercherEnseignant()">
@@ -60,6 +65,21 @@
   </select>
   <p id="enseignant-message" style="color: red; display: none;">Aucun enseignant trouvé</p>
   <br><br>
+  <%
+  } else if ("Enseignant".equals(userRole)) {
+  %>
+  <!-- Envoi automatique de l'enseignant basé sur userContact -->
+  <label for="enseignant">Enseignant :</label>
+
+  <!-- Champ masqué contenant la valeur de userContact -->
+  <input type="hidden" name="enseignant" id="enseignant" value="${userContact}">
+
+  <!-- Affichage de l'information en lecture seule pour l'utilisateur -->
+  <p>Enseignant sélectionné : <strong>${userContact}</strong></p>
+  <br><br>
+  <%
+  }
+  %>
 
   <!-- Recherche et sélection d'étudiants -->
   <label>Étudiants:</label><br>
