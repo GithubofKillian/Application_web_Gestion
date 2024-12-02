@@ -1,7 +1,7 @@
 package group.Application_Web_SPB.service;
 
-import javax.mail.*;
-import javax.mail.internet.*;
+import jakarta.mail.*;
+import jakarta.mail.internet.*;
 import java.util.Properties;
 
 public class EmailService {

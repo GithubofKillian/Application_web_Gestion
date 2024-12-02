@@ -1,7 +1,7 @@
 package group.Application_Web_SPB.entity;
 
 import java.time.LocalDate;
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Enseignant {

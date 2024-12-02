@@ -1,6 +1,6 @@
 package group.Application_Web_SPB.entity;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 
 @Entity
 public class Admin {
