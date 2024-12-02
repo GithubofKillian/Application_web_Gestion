@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Relevé de Notes</title>
+    <link rel="stylesheet" th:href="@{/resources/css/releve.css}">
+</head>
+<body>
+
+<h1>Relevé de Notes</h1>
+
+<!-- Affichage du message d'erreur -->
+<p th:if="${message}" th:text="${message}" style="color: red;"></p>
+
+<!-- Vérification de la disponibilité des données de l'étudiant -->
+<div th:if="${etudiant}">
+    <h2>Étudiant : <span th:text="${etudiant.nom}"></span> <span th:text="${etudiant.prenom}"></span></h2>
+    <p>Matricule : <span th:text="${etudiant.id}"></span></p>
+    <p>Moyenne générale : <span th:text="${moyenne}"></span></p>
+
+    <!-- Tableau des résultats -->
+    <table>
+        <thead>
+        <tr>
+            <th>Cours</th>
+            <th>Note</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="resultat : ${resultats}">
+            <td th:text="${resultat.cours.nom}"></td>
+            <td th:text="${resultat.note}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <br>
+    <!-- Lien pour télécharger le relevé PDF -->
+    <a th:href="${filePath}" download>
+        <button type="button" class="btn dl-btn">Télécharger le relevé PDF</button>
+    </a>
+</div>
+<br>
+<a th:href="@{/resultatservlet}">Retour</a>
+</body>
+</html>

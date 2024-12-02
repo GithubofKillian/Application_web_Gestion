@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Détails du Cours</title>
+  <link rel="stylesheet" th:href="@{/resources/css/detail.css}">
+</head>
+<body>
+<div class="container">
+  <h1>Détails du Cours</h1>
+
+  <p><strong>Nom du cours:</strong> <span th:text="${cours.nom}"></span></p>
+  <p><strong>Enseignant:</strong> <span th:text="${cours.enseignant.nom}"></span></p>
+
+  <h3>Étudiants inscrits:</h3>
+  <ul>
+    <li th:each="etudiant : ${cours.etudiants}" th:text="${etudiant.nom} + ' ' + ${etudiant.prenom}"></li>
+  </ul>
+
+  <a th:href="@{/coursservlet}">Retour</a>
+</div>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Ajouter un Cours</title>
+    <link rel="stylesheet" th:href="@{/resources/css/ajouter.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Ajouter un Cours</h1>
+
+    <form th:action="@{/coursservlet}" method="post">
+        <input type="hidden" name="action" value="create">
+
+        <label for="nom">Nom du cours:</label>
+        <input type="text" name="nom" id="nom" required><br><br>
+
+        <label for="enseignant">Enseignant:</label>
+        <select name="enseignant" id="enseignant" required>
+            <option th:each="enseignant : ${enseignants}"
+                    th:value="${enseignant.id}"
+                    th:text="${enseignant.nom}"></option>
+        </select>
+        <br><br>
+
+        <label>Étudiants:</label><br>
+        <div id="etudiants-list">
+            <div th:each="etudiant : ${etudiants}">
+                <input type="checkbox" name="etudiants" th:value="${etudiant.id}" th:id="'etudiant-' + ${etudiant.id}">
+                <label th:for="'etudiant-' + ${etudiant.id}" th:text="${etudiant.nom} + ' ' + ${etudiant.prenom}"></label>
+            </div>
+        </div>
+        <br>
+
+        <button type="submit">Créer</button>
+    </form>
+    <br>
+    <a th:href="@{/coursservlet}">Retour</a>
+</div>
+</body>
+</html>

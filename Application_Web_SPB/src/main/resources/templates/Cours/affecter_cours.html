@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Affecter Enseignant à un Cours</title>
+</head>
+<body>
+<h2>Affecter Enseignant à un Cours</h2>
+
+<form th:action="@{/enseignantservlet}" method="post">
+    <input type="hidden" name="action" value="assignCourse">
+    <input type="hidden" name="enseignantId" th:value="${enseignant.id}">
+
+    <label for="coursId">ID du Cours :</label>
+    <input type="text" id="coursId" name="coursId" required><br>
+
+    <input type="submit" value="Affecter Cours">
+</form>
+
+<a th:href="@{/enseignantservlet}">Retour à la liste des enseignants</a>
+</body>
+</html>

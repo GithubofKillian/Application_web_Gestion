@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des Étudiants</title>
+  <link rel="stylesheet" th:href="@{/resources/css/liste.css}">
+</head>
+<body>
+<h1>Liste des Étudiants</h1>
+
+<!-- Formulaire de recherche -->
+<form th:action="@{/etudiantservlet}" method="get">
+  <input type="text" name="nomRecherche" placeholder="Rechercher par nom">
+  <input type="hidden" name="action" value="search">
+  <button type="submit">Rechercher</button>
+</form>
+
+<table>
+  <thead>
+  <tr>
+    <th>Nom</th>
+    <th>Prénom</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="etudiant : ${etudiants}">
+    <td th:text="${etudiant.nom}"></td>
+    <td th:text="${etudiant.prenom}"></td>
+    <td>
+      <a th:href="@{'/etudiantservlet?action=detail&id=' + ${etudiant.id}}" class="btn btn-view">Détails</a>
+      <a th:href="@{'/etudiantservlet?action=edit&id=' + ${etudiant.id}}" class="btn btn-edit">Modifier</a>
+      <a th:href="@{'/etudiantservlet?action=delete&id=' + ${etudiant.id}}" class="btn btn-delete">Supprimer</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<br>
+<a th:href="@{/etudiantservlet?action=add}" class="btn add-btn">Ajouter un Étudiant</a>
+</body>
+</html>

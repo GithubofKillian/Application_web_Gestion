@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des Enseignants</title>
+  <link rel="stylesheet" th:href="@{/resources/css/liste.css}">
+  <link rel="stylesheet" th:href="@{/resources/css/menu.css}">
+</head>
+<body>
+<h1>Liste des Enseignants</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Nom</th>
+    <th>Prénom</th>
+    <th>Contact</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="enseignant : ${enseignants}">
+    <td th:text="${enseignant.nom}"></td>
+    <td th:text="${enseignant.prenom}"></td>
+    <td th:text="${enseignant.contact}"></td>
+    <td>
+      <a th:href="@{'/enseignantservlet?action=detail&id=' + ${enseignant.id}}" class="btn btn-view">Détails</a>
+      <a th:href="@{'/enseignantservlet?action=edit&id=' + ${enseignant.id}}" class="btn btn-edit">Modifier</a>
+      <a th:href="@{'/enseignantservlet?action=delete&id=' + ${enseignant.id}}" class="btn btn-delete">Supprimer</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<br>
+
+<a th:href="@{/enseignantservlet?action=add}">
+  <button type="button" class="btn add-btn">Ajouter un enseignant</button>
+</a>
+</body>
+</html>

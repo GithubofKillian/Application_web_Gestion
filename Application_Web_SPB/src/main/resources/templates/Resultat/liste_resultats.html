@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Liste des Résultats</title>
+  <link rel="stylesheet" th:href="@{/resources/css/liste.css}">
+</head>
+<body>
+<h1>Liste des Résultats</h1>
+
+<table>
+  <thead>
+  <tr>
+    <th>Étudiant</th>
+    <th>Cours</th>
+    <th>Note</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="resultat : ${resultats}">
+    <td th:text="${resultat.etudiant.nom + ' ' + resultat.etudiant.prenom}"></td>
+    <td th:text="${resultat.cours.nom}"></td>
+    <td th:text="${resultat.note}"></td>
+    <td>
+      <a th:href="@{'/resultatservlet?action=edit&id=' + ${resultat.id}}" class="btn btn-edit">Modifier</a>
+      <a th:href="@{'/resultatservlet?action=delete&id=' + ${resultat.id}}" class="btn btn-delete" onclick="return confirm('Confirmer la suppression ?');">Supprimer</a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+<br>
+<a th:href="@{/resultatservlet?action=add}" class="btn add-btn">Ajouter un Résultat</a>
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" th:href="@{/resources/css/login.css}">
+</head>
+<body>
+<img th:src="@{/resources/images/logo_cyu.png}" alt="Logo" class="logo">
+<div class="container">
+    <h1>Connexion</h1>
+
+    <!-- Affichage des erreurs -->
+    <p th:if="${error}" th:text="${error}" style="color: red;"></p>
+
+    <form th:action="@{/login}" method="post">
+        <label for="contact">Adresse mail :</label>
+        <input type="text" id="contact" name="contact" required><br><br>
+
+        <label for="password">Mot de passe :</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <label for="role">Rôle :</label>
+        <select id="role" name="role">
+            <option value="Enseignant">Enseignant</option>
+            <option value="Etudiant">Etudiant</option>
+            <option value="Admin">Administrateur</option>
+        </select><br><br>
+
+        <button type="submit">Se connecter</button>
+    </form>
+</div>
+</body>
+</html>

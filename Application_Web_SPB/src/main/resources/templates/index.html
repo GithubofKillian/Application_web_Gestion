@@ -1,10 +1,37 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Accueil</title>
+    <title>Page principale</title>
+    <link rel="stylesheet" th:href="@{/resources/css/index.css}">
 </head>
 <body>
-<h1>Bienvenue sur la page d'accueil!</h1>
+<div class="container">
+    <h1>Bienvenue dans l'application</h1>
+    <div class="button-box">
+        <div th:switch="${userRole}">
+            <div th:case="'Admin'">
+                <a th:href="@{/etudiantservlet}" class="btn">Etudiant</a>
+                <a th:href="@{/enseignantservlet}" class="btn">Enseignant</a>
+                <a th:href="@{/coursservlet}" class="btn">Cours</a>
+                <a th:href="@{/resultatservlet}" class="btn">Résultat</a>
+            </div>
+            <div th:case="'Enseignant'">
+                <a th:href="@{/etudiantservlet}" class="btn">Etudiant</a>
+                <a th:href="@{/coursservlet}" class="btn">Cours</a>
+                <a th:href="@{/resultatservlet}" class="btn">Résultat</a>
+            </div>
+            <div th:case="'Etudiant'">
+                <a th:href="@{/coursservlet}" class="btn">Cours</a>
+                <a th:href="@{/resultatservlet}" class="btn">Résultat</a>
+            </div>
+            <div th:case="*">
+                <p>Rôle inconnu. Veuillez vous reconnecter.</p>
+            </div>
+        </div>
+    </div>
+    <br>
+    <a th:href="@{/LogoutServlet}">Déconnexion</a>
+</div>
 </body>
 </html>
+

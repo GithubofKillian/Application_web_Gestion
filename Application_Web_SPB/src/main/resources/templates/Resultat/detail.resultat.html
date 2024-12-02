@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>Détails du Résultat</title>
+</head>
+<body>
+<h1>Détails du Résultat</h1>
+<p><strong>Étudiant :</strong> <span th:text="${resultat.etudiant.nom + ' ' + resultat.etudiant.prenom}"></span></p>
+<p><strong>Cours :</strong> <span th:text="${resultat.cours.nom}"></span></p>
+<p><strong>Note :</strong> <span th:text="${resultat.note}"></span></p>
+<br>
+<a th:href="@{/resultatservlet?action=list}">Retour à la liste</a>
+</body>
+</html>

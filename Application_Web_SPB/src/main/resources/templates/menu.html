@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Menu</title>
+</head>
+<body>
+<nav class="menu">
+  <ul>
+    <div th:switch="${userRole}">
+      <div th:case="'Admin'">
+        <li><a th:href="@{/etudiantservlet}">Etudiant</a></li>
+        <li><a th:href="@{/enseignantservlet}">Enseignant</a></li>
+        <li><a th:href="@{/coursservlet}">Cours</a></li>
+        <li><a th:href="@{/resultatservlet}">Résultat</a></li>
+      </div>
+      <div th:case="'Enseignant'">
+        <li><a th:href="@{/etudiantservlet}">Etudiant</a></li>
+        <li><a th:href="@{/coursservlet}">Cours</a></li>
+        <li><a th:href="@{/resultatservlet}">Résultat</a></li>
+      </div>
+      <div th:case="'Etudiant'">
+        <li><a th:href="@{/coursservlet}">Cours</a></li>
+        <li><a th:href="@{/resultatservlet}">Résultat</a></li>
+      </div>
+      <div th:case="*">
+        <li>Rôle inconnu. Veuillez vous reconnecter.</li>
+      </div>
+    </div>
+    <li><a th:href="@{/logout}">Déconnexion</a></li>
+  </ul>
+</nav>
+</body>
+</html>
+

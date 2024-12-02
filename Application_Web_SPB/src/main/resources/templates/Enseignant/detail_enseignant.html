@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Détails de l'Enseignant</title>
+    <link rel="stylesheet" th:href="@{/resources/css/detail.css}">
+</head>
+<body>
+<div class="container">
+    <h1>Détails de l'Enseignant</h1>
+
+    <p><strong>ID :</strong> <span th:text="${enseignant.id}"></span></p>
+    <p><strong>Nom :</strong> <span th:text="${enseignant.nom}"></span></p>
+    <p><strong>Prénom :</strong> <span th:text="${enseignant.prenom}"></span></p>
+    <p><strong>Date de Naissance :</strong> <span th:text="${enseignant.dateNaissance}"></span></p>
+    <p><strong>Contact :</strong> <span th:text="${enseignant.contact}"></span></p>
+    <p><strong>Mot de passe :</strong> <span th:text="${enseignant.mdp}"></span></p>
+
+    <a th:href="@{'/enseignantservlet?action=edit&id=' + ${enseignant.id}}">
+        <button type="button">Modifier</button>
+    </a>
+    <br>
+    <br>
+    <a th:href="@{/enseignantservlet}">Retour</a>
+</div>
+</body>
+</html>
