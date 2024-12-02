@@ -11,6 +11,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,7 +35,28 @@ public class CoursServlet extends HttpServlet {
         String action = request.getParameter("action");
 
         if (action == null) {
-            afficherListeCours(request, response);
+            // Récupération de la variable de session 'role'
+            HttpSession sessionweb = request.getSession();
+            String role = (String) sessionweb.getAttribute("userRole");
+            String contact = (String) sessionweb.getAttribute("userContact");
+            switch (role) {
+                case "Etudiant":
+                    afficherListeCoursEtudiant(request, response, contact);
+                    return;
+
+                case "Enseignant":
+                    afficherListeCoursEnseignant(request, response, contact);
+                    return;
+
+                case "Admin":
+                    afficherListeCours(request, response);
+                    return;
+
+                default:
+                    // Action par défaut si le rôle n'est pas reconnu
+                    response.sendError(HttpServletResponse.SC_FORBIDDEN, "Accès non autorisé.");
+                    return;
+            }
         } else {
             switch (action) {
                 case "add":
@@ -73,6 +95,16 @@ public class CoursServlet extends HttpServlet {
 
     private void afficherListeCours(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<Cours> cours = coursService.getAllCours();
+        request.setAttribute("cours", cours);
+        request.getRequestDispatcher("/WEB-INF/views/Cours/listeCours.jsp").forward(request, response);
+    }
+    private void afficherListeCoursEtudiant(HttpServletRequest request, HttpServletResponse response, String contact) throws ServletException, IOException {
+        List<Cours> cours = coursService.getAllCoursEtudiant(contact);
+        request.setAttribute("cours", cours);
+        request.getRequestDispatcher("/WEB-INF/views/Cours/listeCours.jsp").forward(request, response);
+    }
+    private void afficherListeCoursEnseignant(HttpServletRequest request, HttpServletResponse response,String contact) throws ServletException, IOException {
+        List<Cours> cours = coursService.getAllCoursEnseignant(contact);
         request.setAttribute("cours", cours);
         request.getRequestDispatcher("/WEB-INF/views/Cours/listeCours.jsp").forward(request, response);
     }

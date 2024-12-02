@@ -6,8 +6,12 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.Hibernate;
+import org.hibernate.query.Query;
 
 import java.util.List;
+import java.util.ArrayList;
+
+
 
 public class CoursService {
     private SessionFactory sessionFactory;
@@ -58,5 +62,43 @@ public class CoursService {
         List<Cours> cours = session.createQuery("from Cours", Cours.class).list();
         session.close();
         return cours;
+    }
+
+    public List<Cours> getAllCoursEnseignant(String contact) {
+        Session session = sessionFactory.openSession();
+        try {
+            // HQL pour récupérer les cours de l'enseignant selon son contact
+            String hql = "FROM Cours c WHERE c.enseignant.contact = :contact";
+            Query<Cours> query = session.createQuery(hql, Cours.class);
+            query.setParameter("contact", contact);
+
+            List<Cours> cours = query.getResultList();
+            return cours;
+        } catch (Exception e) {
+            System.err.println("[ERROR] getAllCoursEnseignant - Exception : " + e.getMessage());
+            e.printStackTrace();
+            return new ArrayList<>();
+        } finally {
+            session.close();
+        }
+    }
+
+    public List<Cours> getAllCoursEtudiant(String contact) {
+        Session session = sessionFactory.openSession();
+        try {
+            // HQL pour récupérer les cours de l'étudiant selon son contact
+            String hql = "SELECT c FROM Cours c JOIN c.etudiants e WHERE e.contact = :contact";
+            Query<Cours> query = session.createQuery(hql, Cours.class);
+            query.setParameter("contact", contact);
+
+            List<Cours> cours = query.getResultList();
+            return cours;
+        } catch (Exception e) {
+            System.err.println("[ERROR] getAllCoursEtudiant - Exception : " + e.getMessage());
+            e.printStackTrace();
+            return new ArrayList<>();
+        } finally {
+            session.close();
+        }
     }
 }
