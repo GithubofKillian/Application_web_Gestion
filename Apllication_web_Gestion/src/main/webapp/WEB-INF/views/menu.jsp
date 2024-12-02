@@ -2,7 +2,7 @@
   <ul>
     <%
       String userRole = (String) session.getAttribute("userRole");
-
+      String userContact = (String) session.getAttribute("userContact");
       if ("Admin".equals(userRole)) {
     %>
     <li><a href="${pageContext.request.contextPath}/etudiantservlet">Etudiant</a></li>

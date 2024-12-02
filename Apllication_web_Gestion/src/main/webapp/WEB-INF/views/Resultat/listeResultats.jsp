@@ -119,8 +119,10 @@
 <div>
     <h2>Relevé de notes</h2>
     <form action="relevepdfservlet" method="get">
-        <input type="hidden" id="etudiantEmail" name="etudiantEmail" value="${sessionScope.contact}">
-        <p>Étudiant sélectionné : (${sessionScope.contact})</p>
+        <input type="hidden" id="etudiantEmail" name="etudiantEmail" value="${userContact}">
+
+        <p>Étudiant sélectionné :${userContact}</p>
+
         <button type="submit" class="btn btn-pdf">Générer le relevé PDF</button>
     </form>
 </div>
