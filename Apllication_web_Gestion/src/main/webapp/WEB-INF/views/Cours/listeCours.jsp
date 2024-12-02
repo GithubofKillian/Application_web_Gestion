@@ -69,10 +69,7 @@
     </c:forEach>
 </table>
 <br>
-<!-- Lien pour ajouter un nouvel étudiant -->
-<a href="coursservlet?action=add">
-    <button type="button" class="btn add-btn">Ajouter un cours</button>
-</a>
+
 <%
 } else if ("Etudiant".equals(userRole)) {
 %>
