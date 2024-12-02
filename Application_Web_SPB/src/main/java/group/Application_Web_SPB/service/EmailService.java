@@ -1,4 +1,4 @@
-package com.application_web_gestion.service;
+package group.Application_Web_SPB.service;
 
 import javax.mail.*;
 import javax.mail.internet.*;

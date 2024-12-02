@@ -1,4 +1,4 @@
-package com.application_web_gestion.classe;
+package group.Application_Web_SPB.entity;
 
 import javax.persistence.*;
 import java.io.Serializable;
